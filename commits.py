@@ -1,4 +1,5 @@
 import requests 
+import json 
 
 labels = {}
 response = requests.get('https://api.github.com/repos/{owner}/{repo}/commits?author={author}'.format(owner='microsoft', repo='vscode', author='mjbvz'))
@@ -62,3 +63,8 @@ for i in range (0,3):
                         labels[label['name']] += 1
 
 print(labels)
+
+json_object = json.dumps(labels, indent=4)
+
+with open("microsoft-vscode.json","w") as outfile:
+    outfile.write(json_object)
