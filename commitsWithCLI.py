@@ -1,6 +1,7 @@
 import requests 
 import json 
 import argparse
+import os.path
 
 
 def getLastPageOfCommitsOfAContributor(ownerArg, repoArg, nameArg):
@@ -57,11 +58,14 @@ def getNumberOfLabelsWhenItsUsed(ownerArg, repoArg, nameArg):
     return labels
 
 def writeToAJsonFile(ownerArg, repoArg,labels):
+    if os.path.isFile("{}-{}.json".format(ownerArg,repoArg)):
+        with open("{}-{}.json".format(ownerArg,repoArg),"r") as outfile:
+            oldLabels = json.loads(outfile)
+            print(oldLabels)
+            for labelKey in labels:
+                oldLabels[labelKey] += labels[labelKey]
+    # json_object = json.dumps(labels, indent=4)
 
-    json_object = json.dumps(labels, indent=4)
-
-    with open("{}-{}.json".format(ownerArg,repoArg),"w") as outfile:
-        outfile.write(json_object)
 
 #--------------------------------------------------------------------------------#
 parser = argparse.ArgumentParser()
