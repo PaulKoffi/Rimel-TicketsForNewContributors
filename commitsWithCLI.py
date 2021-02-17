@@ -58,13 +58,20 @@ def getNumberOfLabelsWhenItsUsed(ownerArg, repoArg, nameArg):
     return labels
 
 def writeToAJsonFile(ownerArg, repoArg,labels):
-    if os.path.isFile("{}-{}.json".format(ownerArg,repoArg)):
+    lastUpdate = labels
+    if os.path.isfile("results/{}-{}.json".format(ownerArg,repoArg)):
         with open("{}-{}.json".format(ownerArg,repoArg),"r") as outfile:
-            oldLabels = json.loads(outfile)
-            print(oldLabels)
+            oldLabels = json.loads(outfile.read())
+            # print(oldLabels)
             for labelKey in labels:
-                oldLabels[labelKey] += labels[labelKey]
-    # json_object = json.dumps(labels, indent=4)
+                labels[labelKey] += oldLabels[labelKey]
+        with open("results/{}-{}.json".format(ownerArg,repoArg),"w") as outfile:
+            json_object = json.dumps(lastUpdate, indent=4)
+            outfile.write(json_object)
+    else: 
+        with open("results/{}-{}.json".format(ownerArg,repoArg),"w") as outfile:
+            json_object = json.dumps(labels, indent=4)
+            outfile.write(json_object)
 
 
 #--------------------------------------------------------------------------------#
