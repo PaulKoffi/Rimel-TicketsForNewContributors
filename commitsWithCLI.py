@@ -20,8 +20,19 @@ def getLastPageOfCommitsOfAContributor(ownerArg, repoArg, nameArg):
 
     return pageNumber
 
-
+# def pardingMessage (message, )
 def getNumberOfLabelsWhenItsUsed(ownerArg, repoArg, nameArg):
+    infosCommits = {
+        'nombreTotalDeCommitsAnalyses' : 0,
+        'nombreDeCommitsEtiquettesAnalyses' : 0,
+        'nombreDeCommitsNonEtiquettesAnalyses' : 0
+    }
+    infosIssues = {
+        'nombreTotalIssuesAnalysees' : 0,
+        'nombreIssuesLabelisees' : 0,
+        'nombreIssuesNonLabelisees' : 0,
+        'nombreIssuesNonLabeliseesQuiReference': 0
+    }
     labels = {}
     pageNumber = getLastPageOfCommitsOfAContributor(ownerArg, repoArg, nameArg)
     for i in range (0,3):
@@ -34,37 +45,73 @@ def getNumberOfLabelsWhenItsUsed(ownerArg, repoArg, nameArg):
         commits = response1.json()
 
         for commit in commits :
+            infosCommits['nombreTotalDeCommitsAnalyses'] += 1  
             commitMessage = commit['commit']['message']
-            indexToHastag = commitMessage.find('#')
-            if indexToHastag != -1:
+            indexToHashtag = commitMessage.find('#')
+            if indexToHashtag != -1:
+                infosCommits['nombreDeCommitsEtiquettesAnalyses'] += 1
+                infosIssues['nombreTotalIssuesAnalysees'] += 1 
                 issueNumber = ''
-                index1 = indexToHastag 
+                index1 = indexToHashtag 
                 while index1 < len(commitMessage) - 1 and commitMessage[index1 + 1].isnumeric():
                     issueNumber += commitMessage[index1 + 1]
                     index1 += 1
 
                 response2 = requests.get('https://api.github.com/repos/{owner}/{repo}/issues/{issueNumber}'.format(owner='microsoft', repo='vscode',issueNumber=issueNumber))
 
-                issueLabels = response2.json()['labels'] if 'labels' in response2.json() else []
-                
+                # issueLabels = response2.json()['labels'] if 'labels' in response2.json() else []
+                issueBody = response2.json()['body'] if 'body' in response2.json() else ""
+                indexToHashtagIssue = issueBody.find("#")
+                if 'labels' in response2.json():
+                    issueLabels = response2.json()['labels']
+                    infosIssues['nombreIssuesLabelisees'] += 1
+
+                elif indexToHashtagIssue != -1:
+                    infosIssues['nombreIssuesNonLabeliseesQuiReference'] += 1
+                    issueNumber = ''
+                    index1 = indexToHashtagIssue 
+                    while index1 < len(issueBody) - 1 and issueBody[index1 + 1].isnumeric():
+                        issueNumber += issueBody[index1 + 1]
+                        index1 += 1
+
+                    response3 = requests.get('https://api.github.com/repos/{owner}/{repo}/issues/{issueNumber}'.format(owner='microsoft', repo='vscode',issueNumber=issueNumber))
+                    if 'labels' in response3.json():
+                        issueLabels = response3.json()['labels']
+                        infosIssues['nombreIssuesLabelisees'] += 1
+                    else:
+                        issueLabels = []
+                        infosIssues['nombreIssuesNonLabelisees'] += 1
+
+                else:
+                    issueLabels = []
+                    infosIssues['nombreIssuesNonLabelisees'] += 1
+
                 for label in issueLabels:
                     if 'name' in label:
                         if label['name'] not in labels:
                             labels[label['name']] = 1
                         else:
                             labels[label['name']] += 1
-
+            else:
+                infosCommits['nombreDeCommitsNonEtiquettesAnalyses'] += 1 
     # print(labels)
-    return labels
+    return { 'infosCommits': infosCommits , 'infosIssues': infosIssues, 'labels': labels }
 
-def writeToAJsonFile(ownerArg, repoArg,labels):
-    lastUpdate = labels
+def writeToAJsonFile(ownerArg, repoArg,result):
+    lastUpdate = result
     if os.path.isfile("results/{}-{}.json".format(ownerArg,repoArg)):
-        with open("{}-{}.json".format(ownerArg,repoArg),"r") as outfile:
-            oldLabels = json.loads(outfile.read())
+        with open("results/{}-{}.json".format(ownerArg,repoArg),"r") as outfile:
+            oldResult = json.loads(outfile.read())
             # print(oldLabels)
-            for labelKey in labels:
-                labels[labelKey] += oldLabels[labelKey]
+            for infosCommitsKey in result['infosCommits']:
+                result['infosCommits'][infosCommitsKey] += oldResult['infosCommits'][infosCommitsKey]
+            
+            for labelsKey in result['labels']:
+                result['labels'][labelsKey] += oldResult['labels'][labelsKey]
+
+            for infosIssuesKey in result['infosIssues']:
+                result['infosIssues'][infosIssuesKey] += oldResult['infosIssues'][infosIssuesKey]
+
         with open("results/{}-{}.json".format(ownerArg,repoArg),"w") as outfile:
             json_object = json.dumps(lastUpdate, indent=4)
             outfile.write(json_object)
