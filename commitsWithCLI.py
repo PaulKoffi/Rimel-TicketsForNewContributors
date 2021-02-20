@@ -98,26 +98,29 @@ def getNumberOfLabelsWhenItsUsed(ownerArg, repoArg, nameArg):
     return { 'infosCommits': infosCommits , 'infosIssues': infosIssues, 'labels': labels }
 
 def writeToAJsonFile(ownerArg, repoArg,result):
-    lastUpdate = result
     if os.path.isfile("results/{}-{}.json".format(ownerArg,repoArg)):
         with open("results/{}-{}.json".format(ownerArg,repoArg),"r") as outfile:
             oldResult = json.loads(outfile.read())
-            # print(oldLabels)
             for infosCommitsKey in result['infosCommits']:
                 result['infosCommits'][infosCommitsKey] += oldResult['infosCommits'][infosCommitsKey]
             
-            for labelsKey in result['labels']:
-                result['labels'][labelsKey] += oldResult['labels'][labelsKey]
+            for labelsKey in oldResult['labels']:
+                if labelsKey in result['labels']:
+                    result['labels'][labelsKey] += oldResult['labels'][labelsKey]
+                else:
+                    result['labels'][labelsKey] = oldResult['labels'][labelsKey]
 
             for infosIssuesKey in result['infosIssues']:
                 result['infosIssues'][infosIssuesKey] += oldResult['infosIssues'][infosIssuesKey]
+        
+        lastUpdate = result
 
         with open("results/{}-{}.json".format(ownerArg,repoArg),"w") as outfile:
             json_object = json.dumps(lastUpdate, indent=4)
             outfile.write(json_object)
     else: 
         with open("results/{}-{}.json".format(ownerArg,repoArg),"w") as outfile:
-            json_object = json.dumps(labels, indent=4)
+            json_object = json.dumps(result, indent=4)
             outfile.write(json_object)
 
 
