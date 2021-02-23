@@ -41,6 +41,7 @@ def getNumberOfLabelsWhenItsUsed(ownerArg, repoArg, nameArg):
         convertedPageNumberIntToString = str(convertedPageNumberToInt)
         print(convertedPageNumberIntToString)
         response1 = requests.get('https://api.github.com/repos/{owner}/{repo}/commits?author={author}&page={pageNumber}'.format(owner=ownerArg, repo=repoArg, author=nameArg,pageNumber=convertedPageNumberIntToString))
+        # response1 = requests.get('https://api.github.com/repos/{owner}/{repo}/commits?author={author}'.format(owner= ownerArg, repo=repoArg, author=nameArg))
 
         commits = response1.json()
 
