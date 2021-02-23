@@ -65,13 +65,18 @@ Nous nous sommes donc recentrés sur les contributeurs en se posant les question
 En quoi consistent les premiers commits d'un nouveau contributeur de projet ? Appréhende-t-il toute l'architecture du système avant de commencer à contribuer ? Utilise-t-il les tickets dès sa première contribution et si oui, comment les utilise-t-il ?\
 Ces pistes nous ont permis de nous mettre d'accord sur une question générale qu'est :
 ```diff
-- Quels sont les éléments d'un ticket, qui influent les premiers commits d'un nouveau contributeur ?
+- Quels sont les éléments d'un ticket qui permettent à un nouveau contributeur de rentrer dans un projet?
 ```
 ```diff
 + Quels sont les éléments d'un ticket qui permettent à un nouveau contributeur de projet de comprendre le-dit projet ?
 ```
 Pour répondre à cette question, nous avons énuméré deux sous-questions :
-* Quels sont les tickets pris par les contributeurs pour rentrer dans un projet open source ?
+```diff 
+- Quels sont les tickets pris par les contributeurs pour rentrer dans un projet open source ?
+```
+```diff
++ Comment un utilisateur rentre dans un projet ? 
+```
 * Quelles sont les caractéristiques communes à ces tickets (patrons de conception, éléments plus spécifiques sur les tickets) ?
 
 ## III. Collecte d'informations
@@ -90,7 +95,9 @@ Nous avons ainsi choisi les projets open source suivants :
 * [Facebook-React-Native](https://github.com/facebook/react-native)
 * [Kubernetes](https://github.com/kubernetes/kubernetes)
 * [Tensorflow](https://github.com/tensorflow/tensorflow)
-
+* [Ansible]
+* [OhmyZsh]
+* 
 Pourquoi ceux-là et pas d'autres ? Tout d'abord parce qu'ils sont open source ce qui nous permet un libre accès pour nos analyses.\
 Ensuite parce que ce sont de gros projets qui regorgent de beaucoup de contributeurs, de quoi faire une analyse exhaustive.
 Nous avons également consulté l'article d'un groupe de la promotion 2019 qui portait sur l'amélioration des intégrations des contributeurs et la pérennité de la communauté :
@@ -128,28 +135,20 @@ Pour effectuer nos expérimentations et répondre à nos questions, nous avons d
 ### 2. Démarche
 Pour tenter de répondre à notre question, il nous fallait répondre aux deux sous-questions. Nous avons donc émis une hypothèse tout d'abord pour la première sous-question :
 * Sous-question 1 : Quels sont les tickets pris par les contributeurs pour rentrer dans un projet open source ?\
-Nous cherchons à identifier les tickets dont les contributeurs se servent pour entrer dans un projet. 
-  Cela suppose qu'ils sont potentiellement catégorisés et qu'ils peuvent être regroupés par catégorie.
-  Notre intuition à ce stade a été de se servir des ``labels`` pour catégoriser les tickets. 
-  Ainsi, en recherchant manuellement dans certains projets, nous remarquons la présence de certains labels tels que ``good firt issue`` ou `good first contribution` qui traduisent la première vraie contribution du contributeur.
-  Nous avons donc décidé de suivre cette intuition pour définir l'hypothèse suivante :\
-  **Un nouveau contributeur de projet commence par des tickets ayant pour label une chaîne de caractères commençant par good first.**\
-  Une fois définie, il fallait maintenant procéder à la vérification de cette hypothèse. Pour ce faire, nous avons suivi le principe suivant :
-    > Pour un contributeur X pris dans un ensemble de contributeurs
-    > 
-    >> Si :
-    >>> Condition : Les tous premiers commits du contributeur X sont liés à un ticket dont le label commence par ``good first``
-    >>
-    >> Alors :
-    >>> Résultat 1 : Notre hypothèse est vérifiée
-    >> 
-    >> Sinon :
-    >>> Résultat 2 : Notre hypothèse est fausse
+nous cherchons à identifier la manière de rentrer dans un projet par un utilisateur. 
+hypothèse : l'utilisateur rentre dans un projet par des tickets c'est - à dire effectuer des commits étiquetés
 
-Pour effectuer cette vérification, nous avons procédé manuellement dans un premier temps.
-La méthode manuelle consistait à choisir un projet open source, prendre un ensemble de dix(10) contributeurs au hasard puis dérouler notre algorithme de vérification.\
-Mais nous avons très vite été limités par le nombre de projets que nous pouvions analyser, le procédé fastidieux de la tâche et le temps énorme qu'il faut y consacrer.
+```diff
++ Pour répondre à cette problématique nous avons dans un premiers temps recherché dans l'api github l'url nous permettant de récupérer les commits sur un projet particulier d'un contributeur. Suite à cela on se retrouvait dans une première impasse qui était le fait que l'api github ne renvoie que 30 éléments par requête et donc il fallait se déplacer dans les pages. Nous avons manuellement cherché la dernière page puis à partir de cette dernière pour analyser les trois dernières pages de commits. Mais cette méthode ne convenait pas et nous sommes mis à chercher une information nous permettant de récupérer la dernière page de n'importe quelle requête. Une fois trouvé nous nous sommes replongés dans l'avancée de notre expérience. Cette fois-ci, nous parcourions tous les commits des 3 dernières pages et pour chacun d'entre eux nous effectuons une analyse sur le message du commit ( qui se trouve dans à cet endroit dans le corps de la réponse d'un commit). L'analyse sur le message du commit étati de savoir si ce dernier comprenait un hashtag car c'était la condition pour reconnaître un commit étiquetté. (Est ce qu'on parle ici du fait qu'on ait tombé sur des projets qui utilisait un autre système de gestions de tickets)
 
+Nous allons analyser les données et confimer ou infirmer notre hypothèse
+```
+
+```diff   
+- Pour effectuer cette vérification, nous avons procédé manuellement dans un premier temps.
+- La méthode manuelle consistait à choisir un projet open source, prendre un ensemble de dix(10) contributeurs au hasard puis dérouler notre algorithme de vérification.\
+- Mais nous avons très vite été limités par le nombre de projets que nous pouvions analyser, le procédé fastidieux de la tâche et le temps énorme qu'il faut y consacrer.
+```
 Nous avons ensuite mis en place un procédé automatique à partir d'un script python pour nous aider à analyser plus de projets.\
 Le script prend en entrée les différents projets à analyser et le label recherché 
 
@@ -157,16 +156,26 @@ Le script prend en entrée les différents projets à analyser et le label reche
 PM
 Pour répondre à la question suivante: quels sont les labels des premiers commits étiquettés ?
 
-Pour répondre à cette problématique nous avons dans un premiers temps recherché dans l'api github l'url nous permettant de récupérer les commits sur un projet particulier d'un contributeur. Suite à cela on se retrouvait dans une première impasse qui était le fait que l'api github ne renvoie que 30 éléments par requête et donc il fallait se déplacer dans les pages. Nous avons manuellement cherché la dernière page puis à partir de cette dernière pour analyser les trois dernières pages de commits. Mais cette méthode ne convenait pas et nous sommes mis à chercher une information nous permettant de récupérer la dernière page de n'importe quelle requête. Une fois trouvé nous nous sommes replongés dans l'avancée de notre expérience. Cette fois-ci, nous parcourions tous les commits des 3 dernières pages et pour chacun d'entre eux nous effectuons une analyse sur le message du commit ( qui se trouve dans à cet endroit dans le corps de la réponse d'un commit). L'analyse sur le message du commit étati de savoir si ce dernier comprenait un hashtag car c'était la condition pour reconnaître un commit étiquetté. (Est ce qu'on parle ici du fait qu'on ait tombé sur des projets qui utilisait un autre système de gestions de tickets)
-
-Ensuite nous devions recenser tous les labels associés aux différentes issues que nous avons trouvées sur les trois dernières page de commits étiquettés par contributeur qu'on nous avons analysés. Pour cela, comme pour trouver si un commit était étiquetté ou pas nous avions analysé le message de ce dernier. Il suffisait de récupérer le nombre qui se trouve juste après le hashtag. Une fois cela fait, on réeffectuait une requête sur l'api afin de récupérer dans le corps de la réponse de l'issue les labels associés à cette dernière ( qui se trouve à cet endroit). Et pour terminer pour chacun de ces labels nous l'enregistrons dans un fichier json qui avait pour `nom nom_de_l'organisation-nom_du_projet.json` avec le nombre de fois qu'il apparaît. Et si nous faisions un autre contributeur même projet nous mettions à jour les valeurs en cumulant.
-
-Question 2 ...les plus fréquents ? C'est - à - dire sur l'ensembles des premiers commits des contributeurs quels sont les labales qui ressortent le plus ?
 ```
 
 * Sous-question 2 : Quelles sont les caractéristiques communes à ces tickets (patrons de conception, éléments plus spécifiques sur les tickets) ?
+
+  ( body titre et labels ) dire que ce sont les labels qui sont mesurables 
+
+```diff
++ Nous cherchons à identifier les tickets dont les contributeurs se servent pour entrer dans un projet. 
++  Cela suppose qu'ils sont potentiellement catégorisés et qu'ils peuvent être regroupés par catégorie.
++  Notre intuition à ce stade a été de se servir des ``labels`` pour catégoriser les tickets. 
++  Ainsi, en recherchant manuellement dans certains projets, nous remarquons la présence de certains labels tels que ``good firt issue`` ou `good first contribution` qui traduisent la première vraie contribution du contributeur.
++  Nous avons donc décidé de suivre cette intuition pour définir l'hypothèse suivante :\
++  **Un nouveau contributeur de projet commence par des tickets ayant pour label une chaîne de caractères commençant par good first.**\
 ## V. Analyse des résultats & Conclusion
 ```
+Ensuite nous devions recenser tous les labels associés aux différentes issues que nous avons trouvées sur les trois dernières page de commits étiquettés par contributeur qu'on nous avons analysés. Pour cela, comme pour trouver si un commit était étiquetté ou pas nous avions analysé le message de ce dernier. Il suffisait de récupérer le nombre qui se trouve juste après le hashtag. Une fois cela fait, on réeffectuait une requête sur l'api afin de récupérer dans le corps de la réponse de l'issue les labels associés à cette dernière ( qui se trouve à cet endroit). Et pour terminer pour chacun de ces labels nous l'enregistrons dans un fichier json qui avait pour `nom nom_de_l'organisation-nom_du_projet.json` avec le nombre de fois qu'il apparaît. Et si nous faisions un autre contributeur même projet nous mettions à jour les valeurs en cumulant.
+
+Question 2 ...les plus fréquents ? C'est - à - dire sur l'ensembles des premiers commits des contributeurs quels sont les labales qui ressortent le plus ?
+
+
 1. Analyse des résultats & construction d’une conclusion : Une fois votre expérience terminée, vous récupérez vos mesures et vous les analysez pour voir si votre hypothèse tient la route.
 ```
  
