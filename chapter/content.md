@@ -64,19 +64,11 @@ Nous avons essayé de remonter à la source en se disant qu'il n'existe pas d'ar
 Nous nous sommes donc recentrés sur les contributeurs en se posant les questions suivantes :
 En quoi consistent les premiers commits d'un nouveau contributeur de projet ? Appréhende-t-il toute l'architecture du système avant de commencer à contribuer ? Utilise-t-il les tickets dès sa première contribution et si oui, comment les utilise-t-il ?\
 Ces pistes nous ont permis de nous mettre d'accord sur une question générale qu'est :
-```diff
-- Quels sont les éléments d'un ticket qui permettent à un nouveau contributeur de rentrer dans un projet?
-```
-```diff
-+ Quels sont les éléments d'un ticket qui permettent à un nouveau contributeur de projet de comprendre le-dit projet ?
-```
+
+**Quels sont les éléments d'un ticket qui permettent à un nouveau contributeur de rentrer dans un projet?**
+
 Pour répondre à cette question, nous avons énuméré deux sous-questions :
-```diff 
-- Quels sont les tickets pris par les contributeurs pour rentrer dans un projet open source ?
-```
-```diff
-+ Comment un utilisateur rentre dans un projet ? 
-```
+* Quels types de tickets sont pris par les contributeurs pour rentrer dans un projet open source ?
 * Quelles sont les caractéristiques communes à ces tickets (patrons de conception, éléments plus spécifiques sur les tickets) ?
 
 ## III. Collecte d'informations
@@ -134,12 +126,28 @@ Pour effectuer nos expérimentations et répondre à nos questions, nous avons d
 
 ### 2. Démarche
 Pour tenter de répondre à notre question, il nous fallait répondre aux deux sous-questions. Nous avons donc émis une hypothèse tout d'abord pour la première sous-question :
-* Sous-question 1 : Quels sont les tickets pris par les contributeurs pour rentrer dans un projet open source ?\
-nous cherchons à identifier la manière de rentrer dans un projet par un utilisateur. 
-hypothèse : l'utilisateur rentre dans un projet par des tickets c'est - à dire effectuer des commits étiquetés
+
+<div style="text-align: justify">
+
+> * Sous-question 1 : Quels types de tickets sont pris par les contributeurs pour rentrer dans un projet open source ?
+
+Notre hypothèse consiste en celle-ci : **Un contributeur rentre dans un projet par des tickets c'est-à-dire qu'il effectue des commits étiquetés.**
+
+Pour répondre à cette problématique nous avons dans un premier temps recherché dans l'API Github l'url nous permettant de récupérer les commits d'un contributeur sur un projet particulier.
+Suite à cela on se retrouvait dans une première impasse : l'API ne renvoyait que les trente(30) derniers éléments d'une requête.
+Pour une requête qui doit récupérer les commits d'un contributeur par exemple, la requête ne renvoie que les trente derniers commits du contributeur.
+Ceci est dû au système de pagination que Github a mis en place pour éviter de renvoyer toutes les données (données qui peuvent être très volumineuses selon la requête) d'une requête et ainsi éviter de surcharger l'API.
+Une des contraintes liées à notre analyse a d'ailleurs été la limitation du nombre de requêtes pouvant être effectuées en 1h : 5000 requêtes en 1h. Dépassé ce seuil, il faut attendre patiemment que les 1h soient écoulés. 
+
+Il nous fallait donc se déplacer dans les différentes pages, la difficulté étant de trouver la dernière page, celle qui contient les premiers commits du contributeur.
+Nous avons manuellement cherché la dernière page puis à partir de ce point de repère, nous avons analysé les trois dernières pages de commits. 
+Mais cette méthode ne convenait pas car on manœuvrait par tâtonnement pour trouver la dernière page. Nous nous sommes donc mis à chercher une information nous permettant de récupérer la dernière page de n'importe quelle requête.
+Notre script analysait alors les informations récupérées dans les en-têtes des réponses retournées par le serveur pour tenter de retrouver les informations sur la pagination et indirectement sur la dernière page. 
+Une fois trouvée nous nous sommes replongés dans l'avancée de notre expérience. Cette fois-ci, nous parcourions tous les commits des 3 dernières pages et pour chacun d'entre eux nous effectuons une analyse sur le message du commit ( qui se trouve dans à cet endroit dans le corps de la réponse d'un commit). L'analyse sur le message du commit étati de savoir si ce dernier comprenait un hashtag car c'était la condition pour reconnaître un commit étiquetté. (Est ce qu'on parle ici du fait qu'on ait tombé sur des projets qui utilisait un autre système de gestions de tickets)
+</div>
 
 ```diff
-+ Pour répondre à cette problématique nous avons dans un premiers temps recherché dans l'api github l'url nous permettant de récupérer les commits sur un projet particulier d'un contributeur. Suite à cela on se retrouvait dans une première impasse qui était le fait que l'api github ne renvoie que 30 éléments par requête et donc il fallait se déplacer dans les pages. Nous avons manuellement cherché la dernière page puis à partir de cette dernière pour analyser les trois dernières pages de commits. Mais cette méthode ne convenait pas et nous sommes mis à chercher une information nous permettant de récupérer la dernière page de n'importe quelle requête. Une fois trouvé nous nous sommes replongés dans l'avancée de notre expérience. Cette fois-ci, nous parcourions tous les commits des 3 dernières pages et pour chacun d'entre eux nous effectuons une analyse sur le message du commit ( qui se trouve dans à cet endroit dans le corps de la réponse d'un commit). L'analyse sur le message du commit étati de savoir si ce dernier comprenait un hashtag car c'était la condition pour reconnaître un commit étiquetté. (Est ce qu'on parle ici du fait qu'on ait tombé sur des projets qui utilisait un autre système de gestions de tickets)
++ 
 
 Nous allons analyser les données et confimer ou infirmer notre hypothèse
 ```
@@ -157,8 +165,9 @@ PM
 Pour répondre à la question suivante: quels sont les labels des premiers commits étiquettés ?
 
 ```
+<div style="text-align: justify">
 
-* Sous-question 2 : Quelles sont les caractéristiques communes à ces tickets (patrons de conception, éléments plus spécifiques sur les tickets) ?
+> * Sous-question 2 : Quelles sont les caractéristiques communes à ces tickets (patrons de conception, éléments plus spécifiques sur les tickets) ?
 
   ( body titre et labels ) dire que ce sont les labels qui sont mesurables 
 
@@ -169,13 +178,14 @@ Pour répondre à la question suivante: quels sont les labels des premiers commi
 +  Ainsi, en recherchant manuellement dans certains projets, nous remarquons la présence de certains labels tels que ``good firt issue`` ou `good first contribution` qui traduisent la première vraie contribution du contributeur.
 +  Nous avons donc décidé de suivre cette intuition pour définir l'hypothèse suivante :\
 +  **Un nouveau contributeur de projet commence par des tickets ayant pour label une chaîne de caractères commençant par good first.**\
-## V. Analyse des résultats & Conclusion
 ```
 Ensuite nous devions recenser tous les labels associés aux différentes issues que nous avons trouvées sur les trois dernières page de commits étiquettés par contributeur qu'on nous avons analysés. Pour cela, comme pour trouver si un commit était étiquetté ou pas nous avions analysé le message de ce dernier. Il suffisait de récupérer le nombre qui se trouve juste après le hashtag. Une fois cela fait, on réeffectuait une requête sur l'api afin de récupérer dans le corps de la réponse de l'issue les labels associés à cette dernière ( qui se trouve à cet endroit). Et pour terminer pour chacun de ces labels nous l'enregistrons dans un fichier json qui avait pour `nom nom_de_l'organisation-nom_du_projet.json` avec le nombre de fois qu'il apparaît. Et si nous faisions un autre contributeur même projet nous mettions à jour les valeurs en cumulant.
 
 Question 2 ...les plus fréquents ? C'est - à - dire sur l'ensembles des premiers commits des contributeurs quels sont les labales qui ressortent le plus ?
+</div>
 
-
+## V. Analyse des résultats & Conclusion
+```
 1. Analyse des résultats & construction d’une conclusion : Une fois votre expérience terminée, vous récupérez vos mesures et vous les analysez pour voir si votre hypothèse tient la route.
 ```
  
