@@ -9,7 +9,7 @@ def getLastPageOfCommitsOfAContributor(ownerArg, repoArg, nameArg):
     links = response.headers['Link']
 
     linksSplitted = links.split(',')
-
+    print(linksSplitted)
     indexTopage = linksSplitted[1].find('page')
 
     index = indexTopage + 5
