@@ -65,11 +65,11 @@ Nous nous sommes donc recentrés sur les contributeurs en se posant les question
 En quoi consistent les premiers commits d'un nouveau contributeur de projet ? Appréhende-t-il toute l'architecture du système avant de commencer à contribuer ? Utilise-t-il les tickets dès sa première contribution et si oui, comment les utilise-t-il ?\
 Ces pistes nous ont permis de nous mettre d'accord sur une question générale qu'est :
 
-**Quels sont les éléments d'un ticket qui permettent à un nouveau contributeur de rentrer dans un projet?**
+**Quels sont les éléments d'un ticket qui permettent à un nouveau contributeur d'intégrer le développement d'un projet ?**
 
 Pour répondre à cette question, nous avons énuméré deux sous-questions :
-* Quels types de tickets sont pris par les contributeurs pour rentrer dans un projet open source ?
-* Quelles sont les caractéristiques communes à ces tickets (patrons de conception, éléments plus spécifiques sur les tickets) ?
+* Les premiers commits d'un contributeur sont ils toujours associés à des tickets existants ?
+* Quelles sont les caractéristiques communes à ces tickets (types de labels, format du titre, description) ?
 
 ## III. Collecte d'informations
 ```
@@ -87,9 +87,10 @@ Nous avons ainsi choisi les projets open source suivants :
 * [Facebook-React-Native](https://github.com/facebook/react-native)
 * [Kubernetes](https://github.com/kubernetes/kubernetes)
 * [Tensorflow](https://github.com/tensorflow/tensorflow)
-* [Ansible]
-* [OhmyZsh]
-* 
+* [Ansible](https://github.com/ansible/ansible)
+* [OhmyZsh](https://github.com/ohmyzsh/ohmyzsh)
+* [Linux]()
+
 Pourquoi ceux-là et pas d'autres ? Tout d'abord parce qu'ils sont open source ce qui nous permet un libre accès pour nos analyses.\
 Ensuite parce que ce sont de gros projets qui regorgent de beaucoup de contributeurs, de quoi faire une analyse exhaustive.
 Nous avons également consulté l'article d'un groupe de la promotion 2019 qui portait sur l'amélioration des intégrations des contributeurs et la pérennité de la communauté :
@@ -129,7 +130,7 @@ Pour tenter de répondre à notre question, il nous fallait répondre aux deux s
 
 <div style="text-align: justify">
 
-> * Sous-question 1 : Quels types de tickets sont pris par les contributeurs pour rentrer dans un projet open source ?
+> * Sous-question 1 : Les premiers commits d'un contributeur sont ils toujours associés à des tickets existants ?
 
 Notre hypothèse consiste en celle-ci : **Un contributeur rentre dans un projet par des tickets c'est-à-dire qu'il effectue des commits étiquetés.**
 
@@ -167,7 +168,7 @@ Pour répondre à la question suivante: quels sont les labels des premiers commi
 ```
 <div style="text-align: justify">
 
-> * Sous-question 2 : Quelles sont les caractéristiques communes à ces tickets (patrons de conception, éléments plus spécifiques sur les tickets) ?
+> * Sous-question 2 : Quelles sont les caractéristiques communes à ces tickets (types de labels, format du titre, description) ?
 
   ( body titre et labels ) dire que ce sont les labels qui sont mesurables 
 
