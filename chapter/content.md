@@ -146,7 +146,7 @@ Il nous fallait donc se déplacer dans les différentes pages, la difficulté é
 Nous avons manuellement cherché la dernière page puis à partir de ce point de repère, nous avons analysé les trois dernières pages de commits.
 Mais cette méthode ne convenait pas car on manœuvrait par tâtonnement pour trouver la dernière page. Nous nous sommes donc mis à chercher une information nous permettant de récupérer la dernière page de n'importe quelle requête.
 Notre script analysait alors les informations récupérées dans les en-têtes des réponses retournées par le serveur pour tenter de retrouver les informations sur la pagination et indirectement sur la dernière page.
-Une fois trouvée nous nous sommes replongés dans l'avancée de notre expérience. Cette fois-ci, nous parcourions tous les commits des 3 dernières pages et pour chacun d'entre eux nous effectuons une analyse sur le message du commit ( qui se trouve dans à cet endroit dans le corps de la réponse d'un commit). L'analyse sur le message du commit étati de savoir si ce dernier comprenait un hashtag car c'était la condition pour reconnaître un commit étiquetté. (Est ce qu'on parle ici du fait qu'on ait tombé sur des projets qui utilisait un autre système de gestions de tickets)
+Une fois trouvée nous nous sommes replongés dans l'avancée de notre expérience. Cette fois-ci, nous parcourions tous les commits des 3 dernières pages et pour chacun d'entre eux nous effectuons une analyse sur le message du commit ( qui se trouve dans à cet endroit dans le corps de la réponse d'un commit). L'analyse sur le message du commit était de savoir si ce dernier comprenait un hashtag car c'était la condition pour reconnaître un commit étiquetté.
 </div>
 
 ```diff
@@ -171,8 +171,17 @@ Pour répondre à la question suivante: quels sont les labels des premiers commi
 <div style="text-align: justify">
 
 > * Sous-question 2 : Quelles sont les caractéristiques communes à ces tickets (types de labels, format du titre, description) ?
+```
+Ici nous avons le choix entre les labels, le format du titre du ticket ou encore sa description. Pour la description nous avons supposé qu'elle ne pouvait être vraiment mesurable car celle-ci donnait juste des détails sur ce qui était attendu par rapport au ticket concerné et donc faisait plus appel à la compréhension du language humain de la part du contributeur qui pourrait choisir ou pas cet ticket. Donc concrètement c'était une caractéristique qui ne nous aurait pas permis de répondre à notre sous question. 
 
-  ( body titre et labels ) dire que ce sont les labels qui sont mesurables 
+Le titre du ticket est dans le même cas que la description mais nous avons pensé que contrairement à la description le titre pouvait avoir un certain format d'écriture qui pourrait nous permettre de répondre à notre question. En effet suite à la lecture d'un projet de rétro l'année dernière https://github.com/RIMEL-UCA/RIMEL-UCA.github.io/blob/master/chapters/2020/MLAndEvolution/model2020.md qui disait à un moment que le format du commit pouvait suivre une certaine logique comme par exemple si le contributeur commit sur un bug il écrira dans le message de son commit [Bug] suivi de ce qu'il souhaitait dire. Nous avons pensé du coup utilisé cette logique dans le format d'écriture du titre d'un ticket. Mais cette idée n'a pas été retenu car nous nous somme rendus compte après une brève recherches dans les dépots github que cette approche d'écriture n'était pas fortement utilisé et donc nous n'aurions pas eu des résultats convaincants après analyse surtout qu'il y avait plusieurs façon d'écrire comme le stipule le projet de rétro. 
+
+Notre dernière caractéristique est donc le label. Cette caractéristique est très fortement utilisée dans les dépôts Github pour les tickets mais aussi pour les pull requests.
+Ce dernier apporte une indication assez forte sur le ticket qui est le type c'est-à-dire qu'un ticket avec pour label `bug` sans même lire le titre ou la description le contributeur sait qu'il a à faire à un bug à qui demande à être corrigé ou encore `help wanted` où une aide est souhaitée sur ce ticket. On peut penser qu'un contributeur peut selon son envie se concentrer sur des types de tickets. Ce qui à fortement favoriser une étude sur les labels est aussi le fait que sur beaucoup de projets nous avons remarqué la présence de labels tels que good first issues ou good first contribution. Nous nous sommes alors mis en tête que puisque nous analysons l'intégration dans un projet donc nous récupérons les premiers commits étiquetés de ce fait il pourrait avoir un lien avec ces derniers et les labels cités précédemment. Il nous était assez facile de récupérer les labels associés à une issue, de ce fait nous avons opté pour étudier les labels des premiers commits étiquetés.
+
+Suite à cela nous avons émis l'hyptohèse suivante : les premiers commits étiquetés sont associés à des tickets ayant pour labels good first issues ou good first contribution
+```
+  ( body titre et labels ) dire que ce sont les labels qui sont mesurables
 
 ```diff
 + Nous cherchons à identifier les tickets dont les contributeurs se servent pour entrer dans un projet. 
