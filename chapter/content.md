@@ -132,18 +132,20 @@ Pour tenter de répondre à notre question, il nous fallait répondre aux deux s
 
 > * Sous-question 1 : Les premiers commits d'un contributeur sont ils toujours associés à des tickets existants ?
 
-Notre hypothèse consiste en celle-ci : **Un contributeur rentre dans un projet par des tickets c'est-à-dire qu'il effectue des commits étiquetés.**
+Notre hypothèse consiste en celle-ci : **Un contributeur intègre un projet par des tickets c'est-à-dire qu'il effectue des commits étiquetés.**
 
-Pour répondre à cette problématique nous avons dans un premier temps recherché dans l'API Github l'url nous permettant de récupérer les commits d'un contributeur sur un projet particulier.
+Pour répondre à cette question, nous avons eu besoin des premiers commits des différents contributeurs de plusieurs projets. Puisque nous parlons d'intégration dans un projets, cette intégration est représentée par les premiers commits. Nous analyserons ces commits afin de savoir s'ils sont associés à des tickets existants ce qui les définirait comme des `commits étiquetés`.
+
+Pour obtenir notre réponse, nous avons dans un premier temps recherché dans l'API Github l'url nous permettant de récupérer les commits d'un contributeur sur un projet particulier.
 Suite à cela on se retrouvait dans une première impasse : l'API ne renvoyait que les trente(30) derniers éléments d'une requête.
 Pour une requête qui doit récupérer les commits d'un contributeur par exemple, la requête ne renvoie que les trente derniers commits du contributeur.
 Ceci est dû au système de pagination que Github a mis en place pour éviter de renvoyer toutes les données (données qui peuvent être très volumineuses selon la requête) d'une requête et ainsi éviter de surcharger l'API.
-Une des contraintes liées à notre analyse a d'ailleurs été la limitation du nombre de requêtes pouvant être effectuées en 1h : 5000 requêtes en 1h. Dépassé ce seuil, il faut attendre patiemment que les 1h soient écoulés. 
+Une des contraintes liées à notre analyse a d'ailleurs été la limitation du nombre de requêtes pouvant être effectuées en 1h : 5000 requêtes en 1h. Dépassé ce seuil, il faut attendre patiemment que les 1h soient écoulés.
 
 Il nous fallait donc se déplacer dans les différentes pages, la difficulté étant de trouver la dernière page, celle qui contient les premiers commits du contributeur.
-Nous avons manuellement cherché la dernière page puis à partir de ce point de repère, nous avons analysé les trois dernières pages de commits. 
+Nous avons manuellement cherché la dernière page puis à partir de ce point de repère, nous avons analysé les trois dernières pages de commits.
 Mais cette méthode ne convenait pas car on manœuvrait par tâtonnement pour trouver la dernière page. Nous nous sommes donc mis à chercher une information nous permettant de récupérer la dernière page de n'importe quelle requête.
-Notre script analysait alors les informations récupérées dans les en-têtes des réponses retournées par le serveur pour tenter de retrouver les informations sur la pagination et indirectement sur la dernière page. 
+Notre script analysait alors les informations récupérées dans les en-têtes des réponses retournées par le serveur pour tenter de retrouver les informations sur la pagination et indirectement sur la dernière page.
 Une fois trouvée nous nous sommes replongés dans l'avancée de notre expérience. Cette fois-ci, nous parcourions tous les commits des 3 dernières pages et pour chacun d'entre eux nous effectuons une analyse sur le message du commit ( qui se trouve dans à cet endroit dans le corps de la réponse d'un commit). L'analyse sur le message du commit étati de savoir si ce dernier comprenait un hashtag car c'était la condition pour reconnaître un commit étiquetté. (Est ce qu'on parle ici du fait qu'on ait tombé sur des projets qui utilisait un autre système de gestions de tickets)
 </div>
 
@@ -153,13 +155,13 @@ Une fois trouvée nous nous sommes replongés dans l'avancée de notre expérien
 Nous allons analyser les données et confimer ou infirmer notre hypothèse
 ```
 
-```diff   
+```diff
 - Pour effectuer cette vérification, nous avons procédé manuellement dans un premier temps.
 - La méthode manuelle consistait à choisir un projet open source, prendre un ensemble de dix(10) contributeurs au hasard puis dérouler notre algorithme de vérification.\
 - Mais nous avons très vite été limités par le nombre de projets que nous pouvions analyser, le procédé fastidieux de la tâche et le temps énorme qu'il faut y consacrer.
 ```
 Nous avons ensuite mis en place un procédé automatique à partir d'un script python pour nous aider à analyser plus de projets.\
-Le script prend en entrée les différents projets à analyser et le label recherché 
+Le script prend en entrée les différents projets à analyser et le label recherché
 
 ```
 PM
