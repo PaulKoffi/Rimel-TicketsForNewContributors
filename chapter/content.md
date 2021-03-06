@@ -140,7 +140,7 @@ Pour obtenir notre réponse, nous avons dans un premier temps recherché dans l'
 Suite à cela on se retrouvait dans une première impasse : l'API ne renvoyait que les trente(30) derniers éléments d'une requête.
 Pour une requête qui doit récupérer les commits d'un contributeur par exemple, la requête ne renvoie que les trente derniers commits du contributeur.
 Ceci est dû au système de pagination que Github a mis en place pour éviter de renvoyer toutes les données (données qui peuvent être très volumineuses selon la requête) d'une requête et ainsi éviter de surcharger l'API.
-Une des contraintes liées à notre analyse a d'ailleurs été la limitation du nombre de requêtes pouvant être effectuées en 1h : 5000 requêtes en 1h. Dépassé ce seuil, il faut attendre patiemment que les 1h soient écoulés.
+Une des contraintes liées à notre analyse a d'ailleurs été la limitation du nombre de requêtes pouvant être effectuées en 1h : 5000 requêtes en 1h. Dépassé ce seuil, il faut attendre patiemment que les 1h soient écoulées.
 
 Il nous fallait donc se déplacer dans les différentes pages, la difficulté étant de trouver la dernière page, celle qui contient les premiers commits du contributeur.
 Nous avons manuellement cherché la dernière page puis à partir de ce point de repère, nous avons analysé les trois dernières pages de commits.
@@ -190,6 +190,14 @@ Question 2 ...les plus fréquents ? C'est - à - dire sur l'ensembles des premie
 ## V. Analyse des résultats & Conclusion
 ```
 1. Analyse des résultats & construction d’une conclusion : Une fois votre expérience terminée, vous récupérez vos mesures et vous les analysez pour voir si votre hypothèse tient la route.
+```
+```
+Sousquestion1
+
+Après avoir analysé un bon nombres de premiers commits sur des projets, nous avons remarqué avec les résultats que nous avons obtenu que notre hypothèse était plus vérifiée. 
+En effet sur l'ensembles des commits analysés comme vous pouvez le voir sur le digramme suivant (photo du diagramme) la majeur des commits sont étiquetés. La présence de commits non étiquetés peut s'expliquer par le fait que nous avons analysés pour chaque contributeurs 3 pages de commits ce qui correspond au minimum à 60 commits ( à part la dernière page les 2 autres pages ont 30 commits ). En 60 commits il peut arriver que certains n'aient pas besoin d'être associé à un ticket existant. En revanche sur des projets comme `OhmyZsh` il faut souligner que nous avions du readapter notre script car la plupart des contributeurs n'avaient un nombre de commits pouvant aller jusqu'à 3 pages. Mais nous avons remarqué que sur les commits analysés, ils n'étaient pas étiquetés. Nous avons pensé que c'était une erreur de notre part donc nous somme allés vérifier manuellement et effectivement nous rencontrions un certains nombres de commits qui ne référençaient pas de tickets existants. ( je ne sais pas ce qu'on pourrait dire sur ça faudra trouver). Ce n'est pas le premiers projets sur lequel nous somme tombés avec des commits non étiquetés. Tensorflow, Kubernetes, Facebook-React-Native aussi sont dans le même cas mais pour une autre raison. Nous avons remarqué après recherche manuelle aussi qu'en réalité ces projets utilisaient un autre système de gestion de tickets que Github. Cette information a été déduite en regardant les messages de commits comme vous le montre les images suivantes. 
+
+Ce qui nous fait conclure que hormis le fait d'utiliser un autre système de gestion de ticket ou l'immaturité de l'organisation ou juste le fait que la communauté soumet son apport avec un message très clair sur ce qu'il a ajouté et celui qui intégrera le code accepetera ou pas, sur la plupart des projets Github, les contributeurs intègrent les projets avec des commits étiquetés.
 ```
  
 
