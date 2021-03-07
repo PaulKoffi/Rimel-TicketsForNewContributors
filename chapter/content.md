@@ -45,7 +45,7 @@ Ces pistes nous ont permis de nous mettre d'accord sur une question générale q
 **Quels sont les éléments d'un ticket qui permettent à un nouveau contributeur d'intégrer le développement d'un projet ?**
 
 Pour répondre à cette question, nous avons énuméré deux sous-questions :
-* Les premiers commits d'un contributeur sont ils toujours associés à des tickets existants ?
+* Les premiers commits d'un contributeur sont-ils toujours associés à des tickets existants ?
 * Quelles sont les caractéristiques communes à ces tickets (types de labels, format du titre, description) ?
 
 ## III. Collecte d'informations
@@ -96,23 +96,23 @@ Pour tenter de répondre à notre question, il nous fallait répondre aux deux s
 
 <div style="text-align: justify">
 
-> * Sous-question 1 : Les premiers commits d'un contributeur sont ils toujours associés à des tickets existants ?
+> * Sous-question 1 : Les premiers commits d'un contributeur sont-ils toujours associés à des tickets existants ?
 
 Notre hypothèse consiste en celle-ci : **Le premier commit d'un contributeur est associé à un ticket existant.**
 
-Pour répondre à cette question, nous avons eu besoin des premiers commits des différents contributeurs de plusieurs projets. Puisque nous parlons d'intégration dans un projets, cette intégration est représentée par les premiers commits. Nous analyserons ces commits afin de savoir s'ils sont associés à des tickets existants ce qui les définirait comme des `commits étiquetés`.
+Pour répondre à cette question, nous avons eu besoin des premiers commits des différents contributeurs de plusieurs projets. Puisque nous parlons d'intégration dans un projet, cette intégration est représentée par les premiers commits. Nous avons donc analysé ces commits afin de savoir s'ils sont associés à des tickets existants ce qui les définirait comme des `commits étiquetés`.
 
-Pour obtenir notre réponse, nous avons dans un premier temps recherché dans l'API Github l'url nous permettant de récupérer les commits d'un contributeur sur un projet particulier.
-Suite à cela on se retrouvait dans une première impasse : l'API ne renvoyait que trente(30) éléments d'une requête.
+Nous avons dans un premier temps recherché dans l'API Github, une url nous permettant de récupérer les commits d'un contributeur sur un projet passé en paramètre.
+C'est ainsi que nous nous sommes retrouvés dans une première impasse : l'API ne renvoyait que trente(30) éléments d'une requête.
 Pour une requête qui doit récupérer les commits d'un contributeur par exemple, la requête ne renvoie que les trente derniers commits du contributeur.
 Ceci est dû au système de pagination que Github a mis en place pour éviter de renvoyer toutes les données (données qui peuvent être très volumineuses selon la requête) d'une requête et ainsi éviter de surcharger l'API.
-Une des contraintes liées à notre analyse a d'ailleurs été la limitation du nombre de requêtes pouvant être effectuées en 1h : 5000 requêtes en 1h. Dépassé ce seuil, il faut attendre patiemment que les 1h soient écoulées.
+Une des contraintes liées à notre analyse a d'ailleurs été la limitation du nombre de requêtes pouvant être effectuées en une heure : 5000 requêtes par heure. Dépassé ce seuil, il faut attendre patiemment que les soixantes minutes soient écoulées.
 
 Il nous fallait donc se déplacer dans les différentes pages, la difficulté étant de trouver la dernière page, celle qui contient les premiers commits du contributeur.
 Nous avons manuellement cherché la dernière page puis à partir de ce point de repère, nous avons analysé les trois dernières pages de commits.
-Mais cette méthode ne convenait pas car on manœuvrait par tâtonnement pour trouver la dernière page. Nous nous sommes donc mis à chercher une information nous permettant de récupérer la dernière page de n'importe quelle requête.
+Mais cette méthode ne convenait pas non plus car nous manœuvrions par tâtonnement pour trouver la dernière page. Nous nous sommes donc mis à chercher une information nous permettant de récupérer la dernière page de n'importe quelle requête.
 Notre script analysait alors les informations récupérées dans les en-têtes des réponses retournées par le serveur pour tenter de retrouver les informations sur la pagination et indirectement sur la dernière page.
-Une fois trouvée nous nous sommes replongés dans l'avancée de notre expérience. Cette fois-ci, nous parcourions tous les commits des 3 dernières pages et pour chacun d'entre eux nous effectuons une analyse sur le message du commit ( qui se trouve dans à cet endroit dans le corps de la réponse d'un commit). L'analyse sur le message du commit était de savoir si ce dernier comprenait un hashtag car c'était la condition pour reconnaître un commit étiquetté.
+Une fois trouvée nous avons pu avancer de nouveau sur notre expérience. Cette fois-ci, nous parcourions tous les commits des 3 dernières pages (quand c'était possible car certains n'en avaient qu'une) et pour chacun d'entre eux, nous effectuions une analyse sur le message du commit. Le message du commit est un attribut du corps (body) du commit. L'analyse du message consistait à savoir si ce dernier contenait un hashtag (#) car c'était la condition pour reconnaître un commit étiqueté.
 </div>
 
 <div style="text-align: justify">
@@ -130,7 +130,7 @@ Suite à cela nous avons émis l'hyptohèse suivante : les premiers commits éti
 
 Pour vérifier notre hypothèse nous sommes partis sur le fait de recenser tous les labels des premiers commits etiquetés et en sommant tout, ressortir les 5 - 10 labels les plus utilisés. Si dans ces derniers appraît les labels good first issue ou good first contribution alors notre hypothèse sera vraie. Dans le cas contraire elle nous montrera de quelle manière les contributeurs intègrent les projets.
 
-Nous devions recenser tous les labels associés aux différentes issues que nous avons trouvées sur les trois dernières page de commits étiquettés par contributeur qu'on nous avons analysés. Pour cela, comme pour trouver si un commit était étiquetté ou pas nous avions analysé le message de ce dernier. Il suffisait de récupérer le nombre qui se trouve juste après le hashtag. Une fois cela fait, on réeffectuait une requête sur l'api afin de récupérer dans le corps de la réponse de l'issue les labels associés à cette dernière ( qui se trouve à cet endroit). Et pour terminer pour chacun de ces labels nous l'enregistrons dans un fichier json qui avait pour `nom nom_de_l'organisation-nom_du_projet.json` avec le nombre de fois qu'il apparaît. Et si nous faisions un autre contributeur même projet nous mettions à jour les valeurs en cumulant.
+Nous devions recenser tous les labels associés aux différentes issues que nous avons trouvées sur les trois dernières page de commits étiquetés par contributeur qu'on nous avons analysés. Pour cela, comme pour trouver si un commit était étiqueté ou pas nous avions analysé le message de ce dernier. Il suffisait de récupérer le nombre qui se trouve juste après le hashtag. Une fois cela fait, on réeffectuait une requête sur l'api afin de récupérer dans le corps de la réponse de l'issue les labels associés à cette dernière ( qui se trouve à cet endroit). Et pour terminer pour chacun de ces labels nous l'enregistrons dans un fichier json qui avait pour `nom nom_de_l'organisation-nom_du_projet.json` avec le nombre de fois qu'il apparaît. Et si nous faisions un autre contributeur même projet nous mettions à jour les valeurs en cumulant.
 
 Ensuite pour chaque fichier json nous l'avons parcouru pour sommer tous les labels de tous les projets dans un autre fichier json `all-projects`. A partir de ce fichier nous avons calculé le nombre total de chaque clé qui se trouvait dans chaque élément qui le composait. Une fois sommé nous avions pour chaque clé le nombre total avec lequel nous avons érigé des graphes. Par exemple pour la clé `labels` nous avons sommé les labels puis mis dans l'ordre décroissant les labels, donc nous avions du plus utilisé au moins utilisé. Nous avons pris les 5 - 10 premiers labels.
 
