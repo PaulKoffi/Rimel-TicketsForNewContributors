@@ -196,9 +196,32 @@ Comme dans la partie précédente les projets tensorflow, Kubernetes, Facebook-R
 
 Nous allons parler en détails de certains projets comme vscode et flutter pour voir dans un projet dans un premier temps si ces derniers tendent à valider notre hypothèse puis après nous analyserons le résultats général sur l'ensemble des projets que nous avons analysés.
 
+Pour des soucis de lisibilité, nous avons mis les graphes des labels les plus utilisés en bar chart horizontal.
+
 ### **`Vscode`**
 
+Pour faire un état des lieux, nous avons analysés 744 commits dont 327 sont étiquetés. Nous ne reviendrons pas sur les raisons pour lesquelles il y a des commits non étiquetés. Et sur les 327 issues, 307 d'entre elles étaient labélisées. 
+(image du fichier json)
+
+Voici les dix(10) labels utilisés dans le projet : 
+image
+
+On peut remarquer très rapidement l'absence de labels good first issue ou good first contribution. On peut voir que les labels `bug` et `verified` sont extrêmement utilisés dans ce projet. On pourrait expliquer cela par la maturité et la complexité croissante du projet où beaucoup de bugs sont détectés et mises dans issues. Croissante car le label `feature-request`est juste derrière les 2 premiers et montre donc qu'il y a un certain nombre de fonctionnalités qui sont et seront intégrées. Ceci est tout à fait compréhensible vu le nombre mise à jour et les ajouts d'extension par des contributeurs. Ce qui pourrait aussi expliquer le fait que le label `verified` soit le plus utilisé car cela veut dire qu'un membre apte à regarder le code qui sera intégré dans le projet principal rempli les conditions et fini par donner son approbation au travers de pull request.
+
+
 ### **Flutter**
+
+Pour faire un état des lieux, nous avons analysés 802 commits dont 721 sont étiquetés. Et sur les 721 issues, 592 d'entre elles étaient labélisées. 
+(image du fichier json)
+
+Voici les dix(10) labels utilisés dans le projet : 
+image
+
+Comme le projet vscode, on retrouve de très loin les labels `bug` et `verified` suivi par `feature-request`. Là encore on note l'absence des labels good first issue ou good first contribution. Il rejoint vscode dans le fait que sa complexité est croissante avec l'ajout fréquents de fonctionnalités ou de plugins de la part de contributeurs externes comme internes à l'équipe du projet. Ce qui justifierait ces 3 labels car avec un ajout de fonctionnalités et/ou de plugins il faut que ces ajouts soient validés par les personnes chargées de cela et aussi cela ajoute des bug qui doivent être corrigés. 
+
+L'analyse de ces 2 projets nous font penser  à croire que notre hypothèse est faussée et que ce sont plutôt des labels tels que `bug` `verified`et `feature-request` qui sont pris par les contributeurs pour intégrer un projet.
+
+Nous allons à prsénts passer à l'analyse générale qui prend en compte tous les projets analysés. 
 
 ## **Général**
 

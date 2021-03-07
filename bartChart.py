@@ -16,10 +16,10 @@ reversed1 = reversedOriginal[:10]
 
 y_pos = np.arange(len(reversed1))
 performance = [reversed1[i][1] for i in range (0, len(reversed1))]
-print(performance)
+# print(performance)
 plt.rc('ytick',labelsize=5)
 plt.barh(y_pos, performance, align='edge', alpha=0.5, height=0.3)
 plt.yticks(y_pos, (reversed1[i][0] for i in range (0, len(reversed1))))
-plt.xlabel('microsoft-vscode')
+plt.xlabel('flutter-flutter')
 plt.title('Most labels used for first commits')
-plt.savefig('microsoft-vscode.png')
+plt.savefig('charts/microsoft-vscode.png')
