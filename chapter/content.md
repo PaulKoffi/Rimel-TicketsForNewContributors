@@ -190,11 +190,14 @@ Ainsi, dans la plupart des projets Github, les contributeurs intègrent les proj
 
 * ### Sous-question 2
 
-Comme dans la partie précédente les projets tensorflow, Kubernetes, vu qu'ils utilisent un autre système de gestion de ticket mais aussi parce qu'il nous pouvait pas être analysés par notre script. En effet l'attribut qui nous permettait de récupérer le numéro de la dernière page de commits ( qui représente les premiers commits ) n'est pas présent pour les requêtes de ces projets. Ce qui nous force à déterminer cette dernière manuellement pour ensuite modifier le script qui partirait de la page écrite en "dure". Nous avons donc jugé de ne les inclure dans l'analyse.
+Comme dans la partie précédente les projets **Tensorflow** et **Kubernetes** vu qu'ils utilisent un autre système de gestion de tickets ne peuvent pas être analysés par notre script. 
+En effet l'attribut qui nous permettait de récupérer le numéro de la dernière page de commits (qui représente les premiers commits) n'est pas présent pour les requêtes de ces projets. 
+Ce qui nous contraint à déterminer cet attribut manuellement pour ensuite modifier le script. Nous avons donc préféré ne pas les inclure dans l'analyse.
 
-Nous allons parler en détails de certains projets comme vscode et flutter pour voir dans un projet dans un premier temps si ces derniers tendent à valider notre hypothèse puis après nous analyserons le résultats général sur l'ensemble des projets que nous avons analysés.
+En revanche, d'autres projets tels que **vscode** et **flutter** méritent approfondissement.
+Nous allons vérifier si ces projets tendent à valider notre hypothèse de départ et ensuite nous analyserons le résultat général sur l'ensemble des projets que nous avons analysés.
 
-Pour des soucis de lisibilité, nous avons mis les graphes des labels les plus utilisés en bar chart horizontal.
+Par souci de lisibilité, nous avons mis les graphes des labels les plus utilisés en bar chart horizontal.
 
 ### **`Vscode`**
 
@@ -250,7 +253,7 @@ Pour conclure après la lecture de ce article et notre étude, nous pouvons dire
 * Github API
 * Python
 
-## **VII. References**
+## **VIII. References**
 
 1. [Top 50 projects on github 2020](https://www.attosol.com/top-50-projects-on-github-2020/)
 2. [Flutter](https://github.com/flutter/flutter)
