@@ -23,8 +23,10 @@ La commande qui exécute le script prend en argument les options suivantes :
 * `'-n' ou '--name' : Nom du contributeur passé en paramètre`
 * Exemple de commande : `python3 commitsWithCLI.py -o microsoft -r vscode -n mjbvz`
 
-PS : Afin de pouvoir reproduire l'expérience partout, le projet est analysé sur un échantillon de ? premiers commits du contributeur passé en paramètre car Github impose une limite de 5000 requêtes par heure (ou 80 appels par minute) à l'API.\
-Ce script peut donc épuiser le nombre de requêtes disponibles en une seule exécution.\
+PS : Chaque projet est analysé à partir d'un certain nombre de contributeurs (entre 8 et 11 environ) choisis en prenant le moins possible voire pas du tout des membres de l'équipe projet.\
+Les contributeurs utilisés ont été répertoriés dans le fichier [Contributors.md](Contributors.md).\
+Pour chaque contributeur passé en paramètre lors de l'analyse d'un projet, les premiers commits récupérés sont environ entre 30 et 90 (soit une à trois pages de commits) car Github impose une limite de 5000 requêtes par heure (ou 80 appels par minute) à l'API.\
+Ce script peut donc épuiser le nombre de requêtes disponibles en une seule exécution et si le nombre de commits à analyser dépasse 90, l'analyse est susceptible de s'interrompre sans aller jusqu'au bout et il faudra néanmoins attendre 1h pour relancer le script.\
 Toutefois, ce problème peut être contourné par l'utilisation d'un VPN.\
 Lorsque la limite est atteinte, toute requête vers l'API Github renvoie le code Json suivant :
 ```
