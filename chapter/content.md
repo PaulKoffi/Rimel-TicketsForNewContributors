@@ -229,20 +229,38 @@ image du bar chart
 Notre intuition à la fin de l'analyse des deux projets précédents s'est avérée être vraie. Ici nous voyons bien que les labels `verified`, `bug` et `feature-request` sont largement devant tous les autres mais aussi que `good first issue` et `good first contribution` sont totalement absents. 
 Nous pourrions en réalité exclure le label `verified` car en effet pour toute intégration d'un bout de code dans le code principale il faut qu'il soit approuvé donc ce label n'est pas très pertinents à prendre dans l'étude. Nous avons d'autres labels qui spécifient d'autres besoins auxquels les différents contributeurs répondent. Quand nous y réfléchissons, nous avons pris des projets assez mature avec une complexité croissante dû à leur succès, leur utilisation croissante où la demande de fonctionnalités ne cesse d'augmenter ainsi que les bugs détectés. Cela paraît donc logique qu'au vu de ces projets que nous ayons des résultats pareils. Tout ceci infirme notre hypothèse en apportant comme réponse que ce sont plus les labels `bug` et `feature-request` qui sont fréquemment utilisés lors des premiers commits même s'il y a un nombre non négligeable sur des labels qui expriment des besoins plus spécifiques comme `integrated-terminal` ou encore `javascript`. Même si les projets Kubernetes et Tensorflow faisaient parti de l'analyse nous pensons que le résultats serait le même puisqu'eux aussi sont comme vscode ou flutter des projets qui grandissent au fil du temps. Et que nous n'analysons pas les débuts mais une intégration à un projet déjà en cours de développement.
 
-Ce qui nous fait interroger sur ***quand est ce que les labels `good first issue` ou `good first contribution` sont ils utilisés ?***
+Ce qui nous fait interroger sur ***A quoi peut donc servir les labels `good first issue` ou `good first contribution`?***
 
-## VI. Outils
+## **VI. Prise de recul et conclusion**
+
+Par rapport à nos expériences, nous aurions voulu avoir un échantillon de projets encore plus grand pour aoir encore plus de données à traiter. Mais pour le grand nombre de commits étiquetés analysés nous avons conclu qu'il y avait une tendance pour les nouveaux contributeurs à intégrer un projet par le biais de tickets labelisés `bug`, `feature-requests` de manière générale et plus spécifiquement avec d'autres labels. Nous pourrions aussi biaisé notre analyse par le fait aussi qu'il soit possible que nous ayons inclu des membres de l'équipe de projet c'est - à - dire des nouveaux arrivants soit des membres de l'équipe qui ne l'ont pas spécifier dans le description Github. Nous pouvons ajouter que nous avons pris des projets en forte croissance avec des ajouts de fonctionnalités (ou de refactoring) sont fréquents et à cela s'ajoute un nombre assez conséquents de bugs détectés par les membres de l'équipe ou des utilisateurs du projet qui peuvent donc faire remonter et donc finir en issue avec un label `bug`. Le label `verified` n'est pas pertient dans notre analyse puique c'est tout à fait normal qu'un nouveau code qui doit être intégré soit vérifié et approuvé.
+
+Nous pourrions donc dire qu'en fait les contributeurs pour intégrer le développement d'un projet le font au travers de tickets dont le label est `bug`ou `feature-request` s'ils se sentent en mesure de l'achever ou bien des tickets plus spécifiques qui peuvent montrer la spécialité de ce contributeur comme par exemple le fait qu'il intègre un projet sur un ticket `javascript` ou encore `markdown`.
+
+Mais alors nous nous sommes intérroger sur l'utilité des labels `good first issue` ou `good first contribution`. Sur l'article suivant : ***[An Initial Exploration of the “Good First Issue”
+Label for Newcomer Developers
+](https://azaidman.github.io/publications/alderliestenCHASE2021.pdf)*** fourni par notre encadrant, ce dernier explique l'utilité de ces labels.
+L'auteur de l'article parle du fait qu les `good first issue` sont en un sens présent pour aider les nouveaux contributeurs à intégrer le projet car les tickets avec ce label indique qui'il soit familier au projet ou pas il peut achever ce dernier. Jusque là cela correspond à l'idée de ce qu'on se faisait sur ces labels, il ajoutera par la suite son échantillon d'étude qui est beaucoup plus grand que le notre ( environ un facteur 10 nous séprare ). Ce qui rejoint la critique que nous avons émise sur le fait que notre échantillon était encore petit. Puisque sur son échantillon, l'auteur a rencontré près 1.5% de ticket avec le label `good first issue`. Même si le nombre est faible, cela montre bien que ces labels sont bel et bien utilisés. Un peu plus loin il énumérera des types de labels qui sont pris par des développeurs novices ou expérimentés. De ce fait il est dit dans son article que les développeurs pensent que ces labels sont utiles mais que certains contribuent à un projet car ils ont identifé les tickets sur lesquels ils voulaient travailler sans se référer aux labels et que la plupart des novueaux contributeurs préfèrent les tickets `bug`, `documentation` comme première contribution.
+
+Pour conclure après la lecture de ce article et notre étude, nous pouvons dire que les contributeurs intègrent un projet soit par des issues qu'ils ont déjà identifié (donc le titre et/ou la description du ticket) sans se fier aux labels soit par les labels `bug`, `documentation`, `enhancement feature` ou encore `feature-request`. L'usage ds labels `good first issue` est encore faible même si elle est très appréciée par les développeurs et avec peut être avec une meilleure mise en avant cette dernière pourrait devenir très utile.
+
+## **VII. Outils**
 
 * Postman
 * Github API
 * Python
 
-## VI. References
+## **VII. References**
 
-1. [Flutter](https://github.com/flutter/flutter)
-2. [Vscode](https://github.com/microsoft/vscode)
-3. [Facebook-React-Native](https://github.com/facebook/react-native)
-4. [Kubernetes](https://github.com/kubernetes/kubernetes)
-5. [Tensorflow](https://github.com/tensorflow/tensorflow)
-6. [How to improve contributors onboarding](https://rimel-uca.github.io/chapters/2019/code-quality-in-open-source-projects-xwiki-2019/contents)
-7. [Scripts d'exécution des expérimentations](https://github.com/wak-nda/Rimel-TicketsForNewContributors)
+1. [Top 50 projects on github 2020](https://www.attosol.com/top-50-projects-on-github-2020/)
+2. [Flutter](https://github.com/flutter/flutter)
+4. [Vscode](https://github.com/microsoft/vscode)
+5. [Facebook-React-Native](https://github.com/facebook/react-native)
+6. [Kubernetes](https://github.com/kubernetes/kubernetes)
+7. [Tensorflow](https://github.com/tensorflow/tensorflow)
+8. [Ansible](https://github.com/ansible/ansible)
+9. [OhmyZsh](https://github.com/ohmyzsh/ohmyzsh)
+10. [Linux](https://github.com/torvalds/linux)
+11. [How to improve contributors onboarding](https://rimel-uca.github.io/chapters/2019/code-quality-in-open-source-projects-xwiki-2019/contents)
+12. [https://azaidman.github.io/publications/alderliestenCHASE2021.pdf](https://azaidman.github.io/publications/alderliestenCHASE2021.pdf)
+13. [Scripts d'exécution des expérimentations](https://github.com/wak-nda/Rimel-TicketsForNewContributors)
