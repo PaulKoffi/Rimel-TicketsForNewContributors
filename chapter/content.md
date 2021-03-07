@@ -187,15 +187,15 @@ Ce n'est pas le seul sur lequel nous avons remarqué des commits non étiquetés
 En effectuant une recherche manuelle dans ces projets, on a remarqué qu'ils utilisaient un autre système de gestion de tickets que Github.
 Nous avons déduit cette information à partir des messages de commits. On s'en aperçoit en regardant les images suivantes :
 
-<p align="center">
+<div style="align:center">
     <img src="../assets/TicketsForNewContributors/charts/tensorflowCommit.PNG"/>
     <h5 style="text-align:center">Commit tensorflow</h5>
-</p>
+</div>
 
-<p align="center">
+<div style="align:center">
     <img src="../assets/TicketsForNewContributors/charts/reactCommit.PNG"/>
     <h5 style="text-align:center">Commit react native</h5>
-</p>
+</div>
 
 Pour conclure sur cette sous-question, dans la plupart des projets Github, les contributeurs intègrent les projets avec des commits étiquetés.
 
