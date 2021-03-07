@@ -278,5 +278,6 @@ Pour conclure après la lecture de ce article et notre étude, nous pouvons dire
 9. [OhmyZsh](https://github.com/ohmyzsh/ohmyzsh)
 10. [Linux](https://github.com/torvalds/linux)
 11. [How to improve contributors onboarding](https://rimel-uca.github.io/chapters/2019/code-quality-in-open-source-projects-xwiki-2019/contents)
-12. [https://azaidman.github.io/publications/alderliestenCHASE2021.pdf](https://azaidman.github.io/publications/alderliestenCHASE2021.pdf)
+12. [An Initial Exploration of the “Good First Issue”
+Label for Newcomer Developers](https://azaidman.github.io/publications/alderliestenCHASE2021.pdf)
 13. [Scripts d'exécution des expérimentations](https://github.com/wak-nda/Rimel-TicketsForNewContributors)
