@@ -20,7 +20,6 @@ def getLastPageOfCommitsOfAContributor(ownerArg, repoArg, nameArg):
 
     return pageNumber
 
-# def pardingMessage (message, )
 def getNumberOfLabelsWhenItsUsed(ownerArg, repoArg, nameArg):
     infosCommits = {
         'nombreTotalDeCommitsAnalyses' : 0,
@@ -130,14 +129,14 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument('-o','--owner', help='The name of the organization')
 parser.add_argument('-r', '--repo', help='The name of the repository')
-parser.add_argument('-n', '--name', help='The name of the contributors')
+parser.add_argument('-n', '--name', help='The name of the contributor')
 
 args = parser.parse_args()
 
 if args.owner and args.repo and args.name:
     print("Displaying Owner as : % s" % args.owner)
-    print("Displaying Owner as : % s" % args.repo)
-    print("Displaying Owner as : % s" % args.name)
+    print("Displaying Repository as : % s" % args.repo)
+    print("Displaying Contributor as : % s" % args.name)
 
     labels = getNumberOfLabelsWhenItsUsed(args.owner, args.repo, args.name)
-    writeToAJsonFile(args.owner, args.repo,labels)
+    writeToAJsonFile(args.owner, args.repo, labels)

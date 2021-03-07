@@ -4,19 +4,6 @@ title : Etude des éléments associés à un ticket qui influent les premiers co
 date:   2021-01-03 22:00:00 +0100
 ---
 
----
-
-> **Date de rendu finale : Mars 2021 au plus tard**
-> - Respecter la structure pour que les chapitres soient bien indépendants
-> - Remarques :
->>    - Les titres peuvent changer pour être en adéquation avec votre étude.
->>    - De même il est possible de modifier la structure, celle qui est proposée ici est là pour vous aider.
->>    - Utiliser des références pour justifier votre argumentaire, vos choix etc.
-
----
-
-**_janvier 2021_**
-
 ## Auteurs
 
 Nous sommes quatre étudiants en dernière année d'ingénierie informatique à Polytech Nice-Sophia, spécialisés en architecture logicielle :
@@ -28,15 +15,9 @@ Nous sommes quatre étudiants en dernière année d'ingénierie informatique à 
 
 ## I. Contexte du projet
 
-```
-(Préciser ici votre contexte.)
-```
 Les tickets permettent-ils une meilleure compréhension de l’architecture d’un système ?\
 Tel est le sujet qui nous a intéressé parmi ceux qui étaient proposés.
 
-```
-(Pourquoi c'est intéressant.)
-```
 A Polytech Nice-Sophia, nous avons appris à développer de façon AGILE ces trois dernières années en utilisant des outils de VCS adéquats tel que Git dont la plateforme en ligne Github n'est plus à présenter.
 Pour organiser au mieux notre développement, nous avons appris à utiliser les nombreuses fonctionnalités que Github mettait à notre disposition.\
 Parmi ces fonctionnalités, l'une d'entre elle devenue incontournable aujourd'hui est l'utilisation des tickets.\
@@ -55,10 +36,6 @@ Ayant donc à disposition un catalogue de projets que nous pouvions étudier, le
 
 ## II. Observations - Question générale
 
-```
-(1. Commencez par formuler une question sur quelque chose que vous observez ou constatez ou encore une idée émergente. Attention pour répondre à cette question vous devrez être capable de quantifier vos réponses.)
-(2. Préciser bien pourquoi cette question est intéressante de votre point de vue et éventuellement en quoi la question est plus générale que le contexte de votre projet \(ex: Choisir une libraire de code est un problème récurrent qui se pose très différemment cependant en fonction des objectifs)\ Cette première étape nécessite beaucoup de réflexion pour se définir la bonne question afin de poser les bonnes bases pour la suit.
-```
 Le contexte du projet étant choisi, il nous fallait une question générale pour tenter d'y répondre.\
 Nous avons essayé de remonter à la source en se disant qu'il n'existe pas d'architecture sans contributeurs pour la concevoir.\
 Nous nous sommes donc recentrés sur les contributeurs en se posant les questions suivantes :
@@ -72,12 +49,7 @@ Pour répondre à cette question, nous avons énuméré deux sous-questions :
 * Quelles sont les caractéristiques communes à ces tickets (types de labels, format du titre, description) ?
 
 ## III. Collecte d'informations
-```
-Préciser vos zones de recherches en fonction de votre projet,
 
-1. les articles ou documents utiles à votre projet
-2. les outils
-```
 Pour répondre aux questions posées, il nous fallait des projets à analyser sur lesquels poser nos hypothèses et y répondre.\
 Nous nous sommes encore une fois recentrés sur Github car nous étions familiers à son utilisation d'une part et nous avions à notre disposition l'API Github qui permet de faire des tests à grande échelle.\
 Nous avons ainsi choisi les projets open source suivants :
@@ -132,7 +104,7 @@ Pour tenter de répondre à notre question, il nous fallait répondre aux deux s
 
 > * Sous-question 1 : Les premiers commits d'un contributeur sont ils toujours associés à des tickets existants ?
 
-Notre hypothèse consiste en celle-ci : **Un contributeur intègre un projet par des tickets c'est-à-dire qu'il effectue des commits étiquetés.**
+Notre hypothèse consiste en celle-ci : **Le premier commit d'un contributeur est associé à un ticket existant.**
 
 Pour répondre à cette question, nous avons eu besoin des premiers commits des différents contributeurs de plusieurs projets. Puisque nous parlons d'intégration dans un projets, cette intégration est représentée par les premiers commits. Nous analyserons ces commits afin de savoir s'ils sont associés à des tickets existants ce qui les définirait comme des `commits étiquetés`.
 
