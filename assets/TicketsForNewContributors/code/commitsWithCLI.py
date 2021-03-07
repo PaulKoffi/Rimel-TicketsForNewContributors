@@ -60,27 +60,27 @@ def getNumberOfLabelsWhenItsUsed(ownerArg, repoArg, nameArg):
                 response2 = requests.get('https://api.github.com/repos/{owner}/{repo}/issues/{issueNumber}'.format(owner='microsoft', repo='vscode',issueNumber=issueNumber))
 
                 # issueLabels = response2.json()['labels'] if 'labels' in response2.json() else []
-                issueBody = response2.json()['body'] if 'body' in response2.json() else ""
-                indexToHashtagIssue = issueBody.find("#")
+                # issueBody = response2.json()['body'] if 'body' in response2.json() else ""
+                # indexToHashtagIssue = issueBody.find("#")
                 if 'labels' in response2.json():
                     issueLabels = response2.json()['labels']
                     infosIssues['nombreIssuesLabelisees'] += 1
 
-                elif indexToHashtagIssue != -1:
-                    infosIssues['nombreIssuesNonLabeliseesQuiReference'] += 1
-                    issueNumber = ''
-                    index1 = indexToHashtagIssue 
-                    while index1 < len(issueBody) - 1 and issueBody[index1 + 1].isnumeric():
-                        issueNumber += issueBody[index1 + 1]
-                        index1 += 1
+                # elif indexToHashtagIssue != -1:
+                #     infosIssues['nombreIssuesNonLabeliseesQuiReference'] += 1
+                #     issueNumber = ''
+                #     index1 = indexToHashtagIssue 
+                #     while index1 < len(issueBody) - 1 and issueBody[index1 + 1].isnumeric():
+                #         issueNumber += issueBody[index1 + 1]
+                #         index1 += 1
 
-                    response3 = requests.get('https://api.github.com/repos/{owner}/{repo}/issues/{issueNumber}'.format(owner='microsoft', repo='vscode',issueNumber=issueNumber))
-                    if 'labels' in response3.json():
-                        issueLabels = response3.json()['labels']
-                        infosIssues['nombreIssuesLabelisees'] += 1
-                    else:
-                        issueLabels = []
-                        infosIssues['nombreIssuesNonLabelisees'] += 1
+                #     response3 = requests.get('https://api.github.com/repos/{owner}/{repo}/issues/{issueNumber}'.format(owner='microsoft', repo='vscode',issueNumber=issueNumber))
+                #     if 'labels' in response3.json():
+                #         issueLabels = response3.json()['labels']
+                #         infosIssues['nombreIssuesLabelisees'] += 1
+                #     else:
+                #         issueLabels = []
+                #         infosIssues['nombreIssuesNonLabelisees'] += 1
 
                 else:
                     issueLabels = []
