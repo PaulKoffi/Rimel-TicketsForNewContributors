@@ -152,20 +152,43 @@ Ensuite nous avons récupéré le nombre qui se trouve juste après le hashtag (
 Une fois cela fait, on effectuait de nouveau une requête sur l'API afin de récupérer dans le corps de la réponse du ticket, les labels associés à ce ticket. 
 Enfin, nous enregistrons chacun de ces labels et leur nombre total correspondant, dans un fichier json nommé `nom_de_l'organisation`-`nom_du_projet`.`json` puis ces valeurs se cumulent d'un contributeur à un autre et ainsi de suite.
 
-Ensuite pour chaque fichier json nous l'avons parcouru pour sommer tous les labels de tous les projets dans un autre fichier json `all-projects`. A partir de ce fichier nous avons calculé le nombre total de chaque clé qui se trouvait dans chaque élément qui le composait. Une fois sommé nous avions pour chaque clé le nombre total avec lequel nous avons érigé des graphes. Par exemple pour la clé `labels` nous avons sommé les labels puis mis dans l'ordre décroissant les labels, donc nous avions du plus utilisé au moins utilisé. Nous avons pris les 5 - 10 premiers labels.
+Pour représenter nos résultats graphiquement, nous avons parcouru chaque fichier json pour sommer tous les labels de tous les projets dans un fichier json unique nommé `all-projects`. 
+Ensuite nous avons calculé le nombre total de chaque attribut ou clé. 
+Par exemple pour la clé `labels` nous avons sommé les labels puis trié dans l'ordre décroissant.
+On obtenait finalement les labels les plus utilisés aux moins utilisés. Nous avons retenu les premiers labels (environ entre 5 et 10).
 
 </div>
 
 ## V. Analyse des résultats & Conclusion
 
-Sousquestion1
+* ### Sous-question 1
 
-Après avoir analysé un bon nombres de premiers commits sur des projets, nous avons remarqué avec les résultats que nous avons obtenu que notre hypothèse était plus vérifiée.
-En effet sur l'ensembles des commits analysés comme vous pouvez le voir sur le digramme suivant (photo du diagramme) la majeur des commits sont étiquetés. La présence de commits non étiquetés peut s'expliquer par le fait que nous avons analysés pour chaque contributeurs 3 pages de commits ce qui correspond au minimum à 60 commits ( à part la dernière page les 2 autres pages ont 30 commits ). En 60 commits il peut arriver que certains n'aient pas besoin d'être associé à un ticket existant. En revanche sur des projets comme `OhmyZsh` il faut souligner que nous avions du readapter notre script car la plupart des contributeurs n'avaient un nombre de commits pouvant aller jusqu'à 3 pages. Mais nous avons remarqué que sur les commits analysés, ils n'étaient pas étiquetés. Nous avons pensé que c'était une erreur de notre part donc nous somme allés vérifier manuellement et effectivement nous rencontrions un certains nombres de commits qui ne référençaient pas de tickets existants. ( je ne sais pas ce qu'on pourrait dire sur ça faudra trouver). Ce n'est pas le premiers projets sur lequel nous somme tombés avec des commits non étiquetés. Tensorflow, Kubernetes, Facebook-React-Native aussi sont dans le même cas mais pour une autre raison. Nous avons remarqué après recherche manuelle aussi qu'en réalité ces projets utilisaient un autre système de gestion de tickets que Github. Cette information a été déduite en regardant les messages de commits comme vous le montre les images suivantes.
+Après avoir analysé un bon nombre de premiers commits sur des projets, nous avons remarqué sur la base des résultats obtenus que notre hypothèse était vérifiée.
+En effet sur l'ensemble des commits analysés, la majeure partie des commits sont étiquetés.
+Le diagramme suivant le montre clairement :
 
-Ce qui nous fait conclure que hormis le fait d'utiliser un autre système de gestion de ticket ou l'immaturité de l'organisation ou juste le fait que la communauté soumet son apport avec un message très clair sur ce qu'il a ajouté et celui qui intégrera le code accepetera ou pas, sur la plupart des projets Github, les contributeurs intègrent les projets avec des commits étiquetés.
+<p align="center">
+    <img src="../assets/TicketsForNewContributors/charts/all-projects-commits.png"/>
+</p>
 
-Sousquestion 2
+La présence de commits non étiquetés peut s'expliquer par le fait que nous avons analysé 3 pages de commits pour chaque contributeur.
+Cela correspond au minimum à 60 commits car excepté la dernière page, les 2 autres en ont forcément 30 chacune.
+Donc en 60 commits, il peut arriver que certains commits ne soient pas associés à des tickets existants.
+En revanche sur des projets comme `OhmyZsh` il faut préciser que nous avons dû réadapter notre script car la plupart des contributeurs n'avaient pas un nombre de commits pouvant aller jusqu'à 3 pages. 
+Certains de ces commits voire la plupart n'étaient pas étiquetés.
+Nous avons également vérifié manuellement sur le dépôt Github du projet pour s'assurer du résultat obtenu.
+Sur les projets de ce type, on peut remarquer que les contributeurs ne committent pas toujours en référençant des tickets.
+Ce n'est pas le seul sur lequel nous avons remarqué des commits non étiquetés. **Tensorflow**, **Kubernetes** et **Facebook-React-Native** aussi sont dans le même cas.
+En effectuant une recherche manuelle dans ces projets, on a remarqué qu'ils utilisaient un autre système de gestion de tickets que Github.
+Nous avons déduit cette information à partir des messages de commits. On s'en aperçoit en regardant les images suivantes :
+
+<p align="center">
+    <img src="../assets/TicketsForNewContributors/charts/all-projects-commits.png"/>
+</p>
+
+Ainsi, dans la plupart des projets Github, les contributeurs intègrent les projets avec des commits étiquetés.
+
+* ### Sous-question 2
 
 Comme dans la partie précédente les projets tensorflow, Kubernetes, vu qu'ils utilisent un autre système de gestion de ticket mais aussi parce qu'il nous pouvait pas être analysés par notre script. En effet l'attribut qui nous permettait de récupérer le numéro de la dernière page de commits ( qui représente les premiers commits ) n'est pas présent pour les requêtes de ces projets. Ce qui nous force à déterminer cette dernière manuellement pour ensuite modifier le script qui partirait de la page écrite en "dure". Nous avons donc jugé de ne les inclure dans l'analyse.
 
