@@ -119,18 +119,38 @@ Une fois trouvée nous avons pu avancer de nouveau sur notre expérience. Cette 
 
 > * Sous-question 2 : Quelles sont les caractéristiques communes à ces tickets (types de labels, format du titre, description) ?
 
-Ici nous avons le choix entre les labels, le format du titre du ticket ou encore sa description. Pour la description nous avons supposé qu'elle ne pouvait être vraiment mesurable car celle-ci donnait juste des détails sur ce qui était attendu par rapport au ticket concerné et donc faisait plus appel à la compréhension du language humain de la part du contributeur qui pourrait choisir ou pas cet ticket. Donc concrètement c'était une caractéristique qui ne nous aurait pas permis de répondre à notre sous question.
+Ici nous avons le choix entre les labels, le format du titre du ticket ou encore sa description. 
+La description n'est pas un indicateur de performance mesurable car elle donne juste des détails sur les fonctionnalités couvertes par le ticket concerné. 
+Chaque ticket ayant une description différente, la description ne peut donc constituer une caractéristique commune d'autant plus que Les niveaux de compréhension et d'interprétation de chacun étant différents. 
+Donc concrètement, c'était une caractéristique qui ne nous aurait pas permis de répondre à notre sous question.
 
-Le titre du ticket est dans le même cas que la description mais nous avons pensé que contrairement à la description le titre pouvait avoir un certain format d'écriture qui pourrait nous permettre de répondre à notre question. En effet suite à la lecture d'un projet de rétro l'année dernière ***[Comment les bibliothèques de codes de Machine Learning évoluent-elles ?](https://github.com/RIMEL-UCA/RIMEL-UCA.github.io/blob/master/chapters/2020/MLAndEvolution/model2020.md)*** qui disait à un moment que le format du commit pouvait suivre une certaine logique comme par exemple si le contributeur commit sur un bug il écrira dans le message de son commit `[Bug]` suivi de ce qu'il souhaitait dire. Nous avons pensé du coup utilisé cette logique dans le format d'écriture du titre d'un ticket. Mais cette idée n'a pas été retenu car nous nous somme rendus compte après une brève recherches dans les dépots github que cette approche d'écriture n'était pas fortement utilisé et donc nous n'aurions pas eu des résultats convaincants après analyse surtout qu'il y avait plusieurs façon d'écrire comme le stipule le projet de rétro.
+Le titre du ticket était similaire à la description mais nous avons pensé que contrairement à la description, le titre pouvait avoir un certain format d'écriture qui pourrait nous permettre de répondre à notre question. 
+En effet, d'après un des articles de l'année dernière intitulé "***[Comment les bibliothèques de codes de Machine Learning évoluent-elles ?](https://github.com/RIMEL-UCA/RIMEL-UCA.github.io/blob/master/chapters/2020/MLAndEvolution/model2020.md)***", le format d'un commit peut suivre une certaine logique. Par exemple si le contributeur commit sur un bug il écrira dans le message de son commit `[Bug]` suivi du reste. 
+Nous avons donc pensé à utiliser le format d'écriture du titre d'un ticket. 
+Mais après avoir effectué des recherches dans les dépôts Github, nous avons remarqué que cette approche d'écriture n'était pas fortement utilisée.
+Nous n'aurions donc pas eu des résultats convaincants après analyse.
 
-Notre dernière caractéristique est donc le label. Cette caractéristique est très fortement utilisée dans les dépôts Github pour les tickets mais aussi pour les pull requests.
-Ce dernier apporte une indication assez forte sur le ticket qui est le type c'est-à-dire qu'un ticket avec pour label `bug` sans même lire le titre ou la description le contributeur sait qu'il a à faire à un bug à qui demande à être corrigé ou encore `help wanted` où une aide est souhaitée sur ce ticket. On peut penser qu'un contributeur peut selon son envie se concentrer sur des types de tickets. Ce qui à fortement favoriser une étude sur les labels est aussi le fait que sur beaucoup de projets nous avons remarqué la présence de labels tels que good first issues ou good first contribution. Nous nous sommes alors mis en tête que puisque nous analysons l'intégration dans un projet donc nous récupérons les premiers commits étiquetés de ce fait il pourrait avoir un lien avec ces derniers et les labels cités précédemment. Il nous était assez facile de récupérer les labels associés à une issue, de ce fait nous avons opté pour étudier les labels des premiers commits étiquetés.
+Notre dernière caractéristique est donc le label. 
+Cette caractéristique est très fortement utilisée dans les dépôts Github pour les tickets mais aussi pour les **pull requests**.
+Le label apporte une indication forte sur un ticket : son type. 
+Un ticket ayant pour label `bug` laisse facilement deviner le contributeur qu'il s'agit d'un bug à corriger sans même lire le titre ou la description. 
+Ou encore un ticket ayant pour label `help wanted` qui laisse facilement deviner qu'une aide est souhaitée ou requise sur ce ticket. 
+On peut ainsi penser qu'un contributeur a tendance à se concentrer sur des types de tickets. 
 
-Suite à cela nous avons émis l'hyptohèse suivante : les premiers commits étiquetés sont associés à des tickets ayant pour labels good first issues ou good first contribution
+L'autre raison qui a favorisé l'étude les labels c'est le fait que sur beaucoup de projets, nous avons remarqué la présence de labels tels que good first issues ou good first contribution. 
+Puisque nous analysons l'intégration dans un projet et que nous récupérons les premiers commits étiquetés, il pourrait avoir un lien entre ces commits et les labels cités précédemment. 
+Il nous était assez facile de récupérer les labels associés à un ticket. 
+Nous avons donc décidé d'étudier les labels des premiers commits étiquetés.
 
-Pour vérifier notre hypothèse nous sommes partis sur le fait de recenser tous les labels des premiers commits etiquetés et en sommant tout, ressortir les 5 - 10 labels les plus utilisés. Si dans ces derniers appraît les labels good first issue ou good first contribution alors notre hypothèse sera vraie. Dans le cas contraire elle nous montrera de quelle manière les contributeurs intègrent les projets.
+Notre hypothèse était alors la suivante : **les premiers commits étiquetés sont associés à des tickets ayant pour labels good first issues ou good first contribution**.
 
-Nous devions recenser tous les labels associés aux différentes issues que nous avons trouvées sur les trois dernières page de commits étiquetés par contributeur qu'on nous avons analysés. Pour cela, comme pour trouver si un commit était étiqueté ou pas nous avions analysé le message de ce dernier. Il suffisait de récupérer le nombre qui se trouve juste après le hashtag. Une fois cela fait, on réeffectuait une requête sur l'api afin de récupérer dans le corps de la réponse de l'issue les labels associés à cette dernière ( qui se trouve à cet endroit). Et pour terminer pour chacun de ces labels nous l'enregistrons dans un fichier json qui avait pour `nom nom_de_l'organisation-nom_du_projet.json` avec le nombre de fois qu'il apparaît. Et si nous faisions un autre contributeur même projet nous mettions à jour les valeurs en cumulant.
+Pour vérifier notre hypothèse, nous avons recensé tous les labels des premiers commits étiquetés.
+Ensuite nous avons sommé les résultats obtenus pour ressortir les 5 à 10 labels les plus utilisés. 
+Si dans ces derniers apparaissent les labels good first issue ou good first contribution alors notre hypothèse est vraie.
+Nous avons recensé tous les labels associés aux différents tickets que nous avons trouvés sur les trois dernières page de commits étiquetés. 
+Ensuite nous avons récupéré le nombre qui se trouve juste après le hashtag (#) qui référence un ticket. 
+Une fois cela fait, on effectuait de nouveau une requête sur l'API afin de récupérer dans le corps de la réponse du ticket, les labels associés à ce ticket. 
+Enfin, nous enregistrons chacun de ces labels et leur nombre total correspondant, dans un fichier json nommé `nom_de_l'organisation`-`nom_du_projet`.`json` puis ces valeurs se cumulent d'un contributeur à un autre et ainsi de suite.
 
 Ensuite pour chaque fichier json nous l'avons parcouru pour sommer tous les labels de tous les projets dans un autre fichier json `all-projects`. A partir de ce fichier nous avons calculé le nombre total de chaque clé qui se trouvait dans chaque élément qui le composait. Une fois sommé nous avions pour chaque clé le nombre total avec lequel nous avons érigé des graphes. Par exemple pour la clé `labels` nous avons sommé les labels puis mis dans l'ordre décroissant les labels, donc nous avions du plus utilisé au moins utilisé. Nous avons pris les 5 - 10 premiers labels.
 
