@@ -137,7 +137,7 @@ Notre hypothèse consiste en celle-ci : **Un contributeur intègre un projet par
 Pour répondre à cette question, nous avons eu besoin des premiers commits des différents contributeurs de plusieurs projets. Puisque nous parlons d'intégration dans un projets, cette intégration est représentée par les premiers commits. Nous analyserons ces commits afin de savoir s'ils sont associés à des tickets existants ce qui les définirait comme des `commits étiquetés`.
 
 Pour obtenir notre réponse, nous avons dans un premier temps recherché dans l'API Github l'url nous permettant de récupérer les commits d'un contributeur sur un projet particulier.
-Suite à cela on se retrouvait dans une première impasse : l'API ne renvoyait que les trente(30) derniers éléments d'une requête.
+Suite à cela on se retrouvait dans une première impasse : l'API ne renvoyait que trente(30) éléments d'une requête.
 Pour une requête qui doit récupérer les commits d'un contributeur par exemple, la requête ne renvoie que les trente derniers commits du contributeur.
 Ceci est dû au système de pagination que Github a mis en place pour éviter de renvoyer toutes les données (données qui peuvent être très volumineuses selon la requête) d'une requête et ainsi éviter de surcharger l'API.
 Une des contraintes liées à notre analyse a d'ailleurs été la limitation du nombre de requêtes pouvant être effectuées en 1h : 5000 requêtes en 1h. Dépassé ce seuil, il faut attendre patiemment que les 1h soient écoulées.
@@ -171,18 +171,21 @@ Pour répondre à la question suivante: quels sont les labels des premiers commi
 <div style="text-align: justify">
 
 > * Sous-question 2 : Quelles sont les caractéristiques communes à ces tickets (types de labels, format du titre, description) ?
-```
-Ici nous avons le choix entre les labels, le format du titre du ticket ou encore sa description. Pour la description nous avons supposé qu'elle ne pouvait être vraiment mesurable car celle-ci donnait juste des détails sur ce qui était attendu par rapport au ticket concerné et donc faisait plus appel à la compréhension du language humain de la part du contributeur qui pourrait choisir ou pas cet ticket. Donc concrètement c'était une caractéristique qui ne nous aurait pas permis de répondre à notre sous question. 
 
-Le titre du ticket est dans le même cas que la description mais nous avons pensé que contrairement à la description le titre pouvait avoir un certain format d'écriture qui pourrait nous permettre de répondre à notre question. En effet suite à la lecture d'un projet de rétro l'année dernière https://github.com/RIMEL-UCA/RIMEL-UCA.github.io/blob/master/chapters/2020/MLAndEvolution/model2020.md qui disait à un moment que le format du commit pouvait suivre une certaine logique comme par exemple si le contributeur commit sur un bug il écrira dans le message de son commit [Bug] suivi de ce qu'il souhaitait dire. Nous avons pensé du coup utilisé cette logique dans le format d'écriture du titre d'un ticket. Mais cette idée n'a pas été retenu car nous nous somme rendus compte après une brève recherches dans les dépots github que cette approche d'écriture n'était pas fortement utilisé et donc nous n'aurions pas eu des résultats convaincants après analyse surtout qu'il y avait plusieurs façon d'écrire comme le stipule le projet de rétro. 
+Ici nous avons le choix entre les labels, le format du titre du ticket ou encore sa description. Pour la description nous avons supposé qu'elle ne pouvait être vraiment mesurable car celle-ci donnait juste des détails sur ce qui était attendu par rapport au ticket concerné et donc faisait plus appel à la compréhension du language humain de la part du contributeur qui pourrait choisir ou pas cet ticket. Donc concrètement c'était une caractéristique qui ne nous aurait pas permis de répondre à notre sous question.
+
+Le titre du ticket est dans le même cas que la description mais nous avons pensé que contrairement à la description le titre pouvait avoir un certain format d'écriture qui pourrait nous permettre de répondre à notre question. En effet suite à la lecture d'un projet de rétro l'année dernière ***[Comment les bibliothèques de codes de Machine Learning évoluent-elles ?](https://github.com/RIMEL-UCA/RIMEL-UCA.github.io/blob/master/chapters/2020/MLAndEvolution/model2020.md)*** qui disait à un moment que le format du commit pouvait suivre une certaine logique comme par exemple si le contributeur commit sur un bug il écrira dans le message de son commit `[Bug]` suivi de ce qu'il souhaitait dire. Nous avons pensé du coup utilisé cette logique dans le format d'écriture du titre d'un ticket. Mais cette idée n'a pas été retenu car nous nous somme rendus compte après une brève recherches dans les dépots github que cette approche d'écriture n'était pas fortement utilisé et donc nous n'aurions pas eu des résultats convaincants après analyse surtout qu'il y avait plusieurs façon d'écrire comme le stipule le projet de rétro.
 
 Notre dernière caractéristique est donc le label. Cette caractéristique est très fortement utilisée dans les dépôts Github pour les tickets mais aussi pour les pull requests.
 Ce dernier apporte une indication assez forte sur le ticket qui est le type c'est-à-dire qu'un ticket avec pour label `bug` sans même lire le titre ou la description le contributeur sait qu'il a à faire à un bug à qui demande à être corrigé ou encore `help wanted` où une aide est souhaitée sur ce ticket. On peut penser qu'un contributeur peut selon son envie se concentrer sur des types de tickets. Ce qui à fortement favoriser une étude sur les labels est aussi le fait que sur beaucoup de projets nous avons remarqué la présence de labels tels que good first issues ou good first contribution. Nous nous sommes alors mis en tête que puisque nous analysons l'intégration dans un projet donc nous récupérons les premiers commits étiquetés de ce fait il pourrait avoir un lien avec ces derniers et les labels cités précédemment. Il nous était assez facile de récupérer les labels associés à une issue, de ce fait nous avons opté pour étudier les labels des premiers commits étiquetés.
 
 Suite à cela nous avons émis l'hyptohèse suivante : les premiers commits étiquetés sont associés à des tickets ayant pour labels good first issues ou good first contribution
-```
-  ( body titre et labels ) dire que ce sont les labels qui sont mesurables
 
+Pour vérifier notre hypothèse nous sommes partis sur le fait de recenser tous les labels des premiers commits etiquetés et en sommant tout, ressortir les 5 - 10 labels les plus utilisés. Si dans ces derniers appraît les labels good first issue ou good first contribution alors notre hypothèse sera vraie. Dans le cas contraire elle nous montrera de quelle manière les contributeurs intègrent les projets.
+
+Nous devions recenser tous les labels associés aux différentes issues que nous avons trouvées sur les trois dernières page de commits étiquettés par contributeur qu'on nous avons analysés. Pour cela, comme pour trouver si un commit était étiquetté ou pas nous avions analysé le message de ce dernier. Il suffisait de récupérer le nombre qui se trouve juste après le hashtag. Une fois cela fait, on réeffectuait une requête sur l'api afin de récupérer dans le corps de la réponse de l'issue les labels associés à cette dernière ( qui se trouve à cet endroit). Et pour terminer pour chacun de ces labels nous l'enregistrons dans un fichier json qui avait pour `nom nom_de_l'organisation-nom_du_projet.json` avec le nombre de fois qu'il apparaît. Et si nous faisions un autre contributeur même projet nous mettions à jour les valeurs en cumulant.
+
+Ensuite pour chaque fichier json nous l'avons parcouru pour sommer tous les labels de tous les projets dans un autre fichier json `resultat_final`. A partir de ce fichier nous avons mis dans l'ordre décroissant les labels, donc nous avions du plus utilisé au moins utilisé. Nous avons pris les 5 - 10 premiers labels.
 ```diff
 + Nous cherchons à identifier les tickets dont les contributeurs se servent pour entrer dans un projet. 
 +  Cela suppose qu'ils sont potentiellement catégorisés et qu'ils peuvent être regroupés par catégorie.
@@ -191,31 +194,41 @@ Suite à cela nous avons émis l'hyptohèse suivante : les premiers commits éti
 +  Nous avons donc décidé de suivre cette intuition pour définir l'hypothèse suivante :\
 +  **Un nouveau contributeur de projet commence par des tickets ayant pour label une chaîne de caractères commençant par good first.**\
 ```
-Ensuite nous devions recenser tous les labels associés aux différentes issues que nous avons trouvées sur les trois dernières page de commits étiquettés par contributeur qu'on nous avons analysés. Pour cela, comme pour trouver si un commit était étiquetté ou pas nous avions analysé le message de ce dernier. Il suffisait de récupérer le nombre qui se trouve juste après le hashtag. Une fois cela fait, on réeffectuait une requête sur l'api afin de récupérer dans le corps de la réponse de l'issue les labels associés à cette dernière ( qui se trouve à cet endroit). Et pour terminer pour chacun de ces labels nous l'enregistrons dans un fichier json qui avait pour `nom nom_de_l'organisation-nom_du_projet.json` avec le nombre de fois qu'il apparaît. Et si nous faisions un autre contributeur même projet nous mettions à jour les valeurs en cumulant.
-
-Question 2 ...les plus fréquents ? C'est - à - dire sur l'ensembles des premiers commits des contributeurs quels sont les labales qui ressortent le plus ?
 </div>
 
 ## V. Analyse des résultats & Conclusion
+
 ```
 1. Analyse des résultats & construction d’une conclusion : Une fois votre expérience terminée, vous récupérez vos mesures et vous les analysez pour voir si votre hypothèse tient la route.
 ```
-```
+
 Sousquestion1
 
-Après avoir analysé un bon nombres de premiers commits sur des projets, nous avons remarqué avec les résultats que nous avons obtenu que notre hypothèse était plus vérifiée. 
-En effet sur l'ensembles des commits analysés comme vous pouvez le voir sur le digramme suivant (photo du diagramme) la majeur des commits sont étiquetés. La présence de commits non étiquetés peut s'expliquer par le fait que nous avons analysés pour chaque contributeurs 3 pages de commits ce qui correspond au minimum à 60 commits ( à part la dernière page les 2 autres pages ont 30 commits ). En 60 commits il peut arriver que certains n'aient pas besoin d'être associé à un ticket existant. En revanche sur des projets comme `OhmyZsh` il faut souligner que nous avions du readapter notre script car la plupart des contributeurs n'avaient un nombre de commits pouvant aller jusqu'à 3 pages. Mais nous avons remarqué que sur les commits analysés, ils n'étaient pas étiquetés. Nous avons pensé que c'était une erreur de notre part donc nous somme allés vérifier manuellement et effectivement nous rencontrions un certains nombres de commits qui ne référençaient pas de tickets existants. ( je ne sais pas ce qu'on pourrait dire sur ça faudra trouver). Ce n'est pas le premiers projets sur lequel nous somme tombés avec des commits non étiquetés. Tensorflow, Kubernetes, Facebook-React-Native aussi sont dans le même cas mais pour une autre raison. Nous avons remarqué après recherche manuelle aussi qu'en réalité ces projets utilisaient un autre système de gestion de tickets que Github. Cette information a été déduite en regardant les messages de commits comme vous le montre les images suivantes. 
+Après avoir analysé un bon nombres de premiers commits sur des projets, nous avons remarqué avec les résultats que nous avons obtenu que notre hypothèse était plus vérifiée.
+En effet sur l'ensembles des commits analysés comme vous pouvez le voir sur le digramme suivant (photo du diagramme) la majeur des commits sont étiquetés. La présence de commits non étiquetés peut s'expliquer par le fait que nous avons analysés pour chaque contributeurs 3 pages de commits ce qui correspond au minimum à 60 commits ( à part la dernière page les 2 autres pages ont 30 commits ). En 60 commits il peut arriver que certains n'aient pas besoin d'être associé à un ticket existant. En revanche sur des projets comme `OhmyZsh` il faut souligner que nous avions du readapter notre script car la plupart des contributeurs n'avaient un nombre de commits pouvant aller jusqu'à 3 pages. Mais nous avons remarqué que sur les commits analysés, ils n'étaient pas étiquetés. Nous avons pensé que c'était une erreur de notre part donc nous somme allés vérifier manuellement et effectivement nous rencontrions un certains nombres de commits qui ne référençaient pas de tickets existants. ( je ne sais pas ce qu'on pourrait dire sur ça faudra trouver). Ce n'est pas le premiers projets sur lequel nous somme tombés avec des commits non étiquetés. Tensorflow, Kubernetes, Facebook-React-Native aussi sont dans le même cas mais pour une autre raison. Nous avons remarqué après recherche manuelle aussi qu'en réalité ces projets utilisaient un autre système de gestion de tickets que Github. Cette information a été déduite en regardant les messages de commits comme vous le montre les images suivantes.
 
 Ce qui nous fait conclure que hormis le fait d'utiliser un autre système de gestion de ticket ou l'immaturité de l'organisation ou juste le fait que la communauté soumet son apport avec un message très clair sur ce qu'il a ajouté et celui qui intégrera le code accepetera ou pas, sur la plupart des projets Github, les contributeurs intègrent les projets avec des commits étiquetés.
-```
- 
+
+Sousquestion 2
+
+Comme dans la partie précédente les projets tensorflow, Kubernetes, Facebook-React-Native vu qu'ils utilisent un autre système de gestion de ticket ils ne font pas partie de l'analyse sur les labels que nous avons effectuée.
+
+Nous allons parler en détails de certains projets comme vscode et flutter pour voir dans un projet dans un premier temps si ces derniers tendent à valider notre hypothèse puis après nous analyserons le résultats général sur l'ensemble des projets que nous avons analysés.
+
+### **`Vscode`**
+
+### **Flutter**
+
+## **Général**
 
 ## VI. Outils
+
 ```
 Précisez votre utilisation des outils ou les développements \(e.g. scripts\) réalisés pour atteindre vos objectifs. Ce chapitre doit viser à \(1\) pouvoir reproduire vos expérimentations, \(2\) partager/expliquer à d'autres l'usage des outils.
 ```
 * Postman
 * Github API
+* Python
 
 ## VI. References
 
