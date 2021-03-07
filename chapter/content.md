@@ -178,7 +178,15 @@ L'analyse de ces 2 projets nous mène à croire que notre hypothèse est faussé
 
 Nous allons à prsént passer à l'analyse générale qui prend en compte tous les projets analysés. 
 
-## **Général**
+### **Général**
+Nous passerons directement à l'analyse des labels puique l'analye sur les commits a été faite précédemment. 
+
+image du bar chart 
+
+Notre intuition à la fin de l'analyse des deux projets précédents s'est avérée être vraie. Ici nous voyons bien que les labels `verified`, `bug` et `feature-request` sont largement devant tous les autres mais aussi que `good first issue` et `good first contribution` sont totalement absents. 
+Nous pourrions en réalité exclure le label `verified` car en effet pour toute intégration d'un bout de code dans le code principale il faut qu'il soit approuvé donc ce label n'est pas très pertinents à prendre dans l'étude. Nous avons d'autres labels qui spécifient d'autres besoins auxquels les différents contributeurs répondent. Quand nous y réfléchissons, nous avons pris des projets assez mature avec une complexité croissante dû à leur succès, leur utilisation croissante où la demande de fonctionnalités ne cesse d'augmenter ainsi que les bugs détectés. Cela paraît donc logique qu'au vu de ces projets que nous ayons des résultats pareils. Tout ceci infirme notre hypothèse en apportant comme réponse que ce sont plus les labels `bug` et `feature-request` qui sont fréquemment utilisés lors des premiers commits même s'il y a un nombre non négligeable sur des labels qui expriment des besoins plus spécifiques comme `integrated-terminal` ou encore `javascript`. 
+
+Ce qui nous fait interroger sur ***quand est ce que les labels `good first issue` ou `good first contribution` sont ils utilisés ?***
 
 ## VI. Outils
 
