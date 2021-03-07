@@ -178,6 +178,10 @@ En revanche sur des projets comme `OhmyZsh` il faut préciser que nous avons dû
 Certains de ces commits voire la plupart n'étaient pas étiquetés.
 Nous avons également vérifié manuellement sur le dépôt Github du projet pour s'assurer du résultat obtenu.
 Sur les projets de ce type, on peut remarquer que les contributeurs ne committent pas toujours en référençant des tickets.
+
+<p align="center">
+    <img src="../assets/TicketsForNewContributors/charts/ohmyzsh-commits.png"/>
+</p>
 Ce n'est pas le seul sur lequel nous avons remarqué des commits non étiquetés. **Tensorflow**, **Kubernetes** et **Facebook-React-Native** aussi sont dans le même cas.
 En effectuant une recherche manuelle dans ces projets, on a remarqué qu'ils utilisaient un autre système de gestion de tickets que Github.
 Nous avons déduit cette information à partir des messages de commits. On s'en aperçoit en regardant les images suivantes :
