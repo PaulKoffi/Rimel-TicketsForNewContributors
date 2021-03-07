@@ -189,15 +189,13 @@ Nous avons déduit cette information à partir des messages de commits. On s'en 
 
 <p align="center">
     <img src="../assets/TicketsForNewContributors/charts/tensorflowCommit.PNG"/>
+    <h5 style="text-align:center">Commit tensorflow</h5>
 </p>
-
-* Ceci est un commit de tensorflow
 
 <p align="center">
     <img src="../assets/TicketsForNewContributors/charts/reactCommit.PNG"/>
+    <h5 style="text-align:center">Commit react native</h5>
 </p>
-
-* Ceci est un commit de React Native
 
 Pour conclure sur cette sous-question, dans la plupart des projets Github, les contributeurs intègrent les projets avec des commits étiquetés.
 
