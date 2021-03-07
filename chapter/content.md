@@ -182,15 +182,24 @@ Sur les projets de ce type, on peut remarquer que les contributeurs ne committen
 <p align="center">
     <img src="../assets/TicketsForNewContributors/charts/ohmyzsh-commits.png"/>
 </p>
+
 Ce n'est pas le seul sur lequel nous avons remarqué des commits non étiquetés. **Tensorflow**, **Kubernetes** et **Facebook-React-Native** aussi sont dans le même cas.
 En effectuant une recherche manuelle dans ces projets, on a remarqué qu'ils utilisaient un autre système de gestion de tickets que Github.
 Nous avons déduit cette information à partir des messages de commits. On s'en aperçoit en regardant les images suivantes :
 
 <p align="center">
-    <img src="../assets/TicketsForNewContributors/charts/all-projects-commits.png"/>
+    <img src="../assets/TicketsForNewContributors/charts/tensorflowCommit.png"/>
 </p>
 
-Ainsi, dans la plupart des projets Github, les contributeurs intègrent les projets avec des commits étiquetés.
+* Ceci est un commit de tensorflow
+
+<p align="center">
+    <img src="../assets/TicketsForNewContributors/charts/reactCommit.png"/>
+</p>
+
+* Ceci est un commit de React Native
+
+Pour conclure sur cette sous-question, dans la plupart des projets Github, les contributeurs intègrent les projets avec des commits étiquetés.
 
 * ### Sous-question 2
 
