@@ -137,7 +137,7 @@ Un ticket ayant pour label `bug` laisse facilement deviner le contributeur qu'il
 Ou encore un ticket ayant pour label `help wanted` qui laisse facilement deviner qu'une aide est souhaitée ou requise sur ce ticket. 
 On peut ainsi penser qu'un contributeur a tendance à se concentrer sur des types de tickets. 
 
-L'autre raison qui a favorisé l'étude les labels c'est le fait que sur beaucoup de projets, nous avons remarqué la présence de labels tels que good first issues ou good first contribution. 
+L'autre raison qui a favorisé l'étude les labels c'est le fait que sur beaucoup de projets, nous avons remarqué la présence de labels tels que `good first issue` ou `good first contribution`. 
 Puisque nous analysons l'intégration dans un projet et que nous récupérons les premiers commits étiquetés, il pourrait avoir un lien entre ces commits et les labels cités précédemment. 
 Il nous était assez facile de récupérer les labels associés à un ticket. 
 Nous avons donc décidé d'étudier les labels des premiers commits étiquetés.
@@ -159,7 +159,7 @@ On obtenait finalement les labels les plus utilisés aux moins utilisés. Nous a
 
 </div>
 
-## V. Analyse des résultats & Conclusion
+## V. Analyse des résultats obtenus
 
 * ### Sous-question 1
 
@@ -189,12 +189,12 @@ Nous avons déduit cette information à partir des messages de commits. On s'en 
 
 <div style="align:center">
     <img src="../assets/TicketsForNewContributors/charts/tensorflowCommit.PNG"/>
-    <h5 style="text-align:center">Commit tensorflow</h5>
+    <h5 style="text-align:center">Commits tensorflow</h5>
 </div>
 
 <div style="align:center">
     <img src="../assets/TicketsForNewContributors/charts/reactCommit.PNG"/>
-    <h5 style="text-align:center">Commit react native</h5>
+    <h5 style="text-align:center">Commits react native</h5>
 </div>
 
 Pour conclure sur cette sous-question, dans la plupart des projets Github, les contributeurs intègrent les projets avec des commits étiquetés.
@@ -212,7 +212,9 @@ Par souci de lisibilité, nous avons mis les graphes des labels les plus utilis�
 
 ### **`Vscode`**
 
-Pour faire un état des lieux, nous avons analysés 744 commits dont 327 sont étiquetés. Nous ne reviendrons pas sur les raisons pour lesquelles il y a des commits non étiquetés. Et sur les 327 issues, 307 d'entre elles étaient labélisées.
+Pour faire un état des lieux de vscode, nous avons analysés 744 commits dont 327 sont étiquetés. 
+Les raisons de la présence de commits non étiquetés ont déjà été explicitées plus haut. 
+Sur les 327 tickets détectés, 307 d'entre elles étaient labellisées.
 
 Voici les dix(10) labels utilisés dans le projet :
 
@@ -220,11 +222,18 @@ Voici les dix(10) labels utilisés dans le projet :
     <img src="../assets/TicketsForNewContributors/charts/microsoft-vscode.png"/>
 </p>
 
-On peut remarquer très rapidement l'absence de labels good first issue ou good first contribution. On peut voir que les labels `bug` et `verified` sont extrêmement utilisés dans ce projet. On pourrait expliquer cela par la maturité et la complexité croissante du projet où beaucoup de bugs sont détectés et mises dans issues. Croissante car le label `feature-request`est juste derrière les 2 premiers et montre donc qu'il y a un certain nombre de fonctionnalités qui sont et seront intégrées. Ceci est tout à fait compréhensible vu le nombre mise à jour et les ajouts d'extension par des contributeurs. Ce qui pourrait aussi expliquer le fait que le label `verified` soit le plus utilisé car cela veut dire qu'un membre apte à regarder le code qui sera intégré dans le projet principal rempli les conditions et fini par donner son approbation au travers de pull request.
+On peut remarquer très rapidement l'absence de labels good first issue ou good first contribution. 
+On peut voir que les labels `bug` et `verified` sont extrêmement utilisés dans ce projet. 
+Cela peut s'expliquer par la maturité et la complexité croissante du projet où beaucoup de bugs sont détectés et répertoriés dans les tickets. 
+C'est un projet à complexité croissante car le label `feature-request` est juste derrière les 2 premiers et montre donc qu'il y a un certain nombre de fonctionnalités qui sont en cours d'intégration. 
+Ceci se déduit également au vu du nombre de mises à jour et aux ajouts d'extension par des contributeurs. 
+Quant au label `verified`, son utilisation fréquente peut s'expliquer par le fait qu'un membre vérifie une nouvelle partie de code intégrée sur la branche principale du projet et s'assure que les nouvelles fonctionnalités s'intègrent bien aux fonctionnalités existantes. 
+Si tout est correct, il finit par donner son approbation via une pull request.
 
-### **Flutter**
+### **`Flutter`**
 
-Pour faire un état des lieux, nous avons analysés 802 commits dont 721 sont étiquetés. Et sur les 721 issues, 592 d'entre elles étaient labélisées.
+Pour faire un état des lieux de flutter, nous avons analysés 802 commits dont 721 sont étiquetés. 
+Sur les 721 tickets détectés, 592 d'entre eux étaient labellisées.
 
 Voici les dix(10) labels utilisés dans le projet :
 
@@ -232,36 +241,61 @@ Voici les dix(10) labels utilisés dans le projet :
     <img src="../assets/TicketsForNewContributors/charts/flutter-flutter.png"/>
 </p>
 
-Comme le projet vscode, on retrouve de très loin les labels `bug` et `verified` suivi par `feature-request`. Là encore on note l'absence des labels good first issue ou good first contribution. Il rejoint vscode dans le fait que sa complexité est croissante avec l'ajout fréquents de fonctionnalités ou de plugins de la part de contributeurs externes comme internes à l'équipe du projet. Ce qui justifierait ces 3 labels car avec un ajout de fonctionnalités et/ou de plugins il faut que ces ajouts soient validés par les personnes chargées de cela et aussi cela ajoute des bug qui doivent être corrigés.
+Comme dans le projet vscode, on retrouve également en tête les labels `bug` et `verified` suivi par `feature-request`. 
+Là encore on note l'absence des labels `good first issue` ou `good first contribution`. 
+Flutter rejoint vscode dans le fait que sa complexité est croissante avec l'ajout fréquente de fonctionnalités ou de plugins de la part de contributeurs externes et internes à l'équipe du projet. 
+Ceci justifie donc ces trois labels car avec un ajout de fonctionnalités et/ou de plugins il faut que ces ajouts soient validés par les personnes chargées de les valider, d'autant plus que les intégrations sont suceptibles de rajouter des bugs qui doivent être corrigés.
 
-L'analyse de ces 2 projets nous mène à croire que notre hypothèse est faussée et que ce sont plutôt des labels tels que `bug` `verified`et `feature-request` qui sont pris par les contributeurs pour intégrer un projet.
+L'analyse de ces 2 projets nous mène à croire que notre hypothèse de base est faussée et que ce sont plutôt des labels tels que `bug`, `verified` et `feature-request` qui sont pris par les contributeurs pour intégrer un projet ou du moins ce sont les labels via lesquelles les nouveaux contributeurs intègrent des projets.
 
-Nous allons à prsént passer à l'analyse générale qui prend en compte tous les projets analysés.
+Nous allons à présent passer à l'analyse générale qui prend en compte tous les projets analysés.
 
-### **Général**
-Nous passerons directement à l'analyse des labels puique l'analye sur les commits a été faite précédemment.
+### **`Analyse générale`**
+Nous passerons directement à l'analyse des labels puisque l'analyse sur les commits a été faite précédemment.
 
 <p align="center">
     <img src="../assets/TicketsForNewContributors/charts/all-projects.png"/>
 </p>
 
-Notre intuition à la fin de l'analyse des deux projets précédents s'est avérée être vraie. Ici nous voyons bien que les labels `verified`, `bug` et `feature-request` sont largement devant tous les autres mais aussi que `good first issue` et `good first contribution` sont totalement absents.
-Nous pourrions en réalité exclure le label `verified` car en effet pour toute intégration d'un bout de code dans le code principale il faut qu'il soit approuvé donc ce label n'est pas très pertinents à prendre dans l'étude. Nous avons d'autres labels qui spécifient d'autres besoins auxquels les différents contributeurs répondent. Quand nous y réfléchissons, nous avons pris des projets assez mature avec une complexité croissante dû à leur succès, leur utilisation croissante où la demande de fonctionnalités ne cesse d'augmenter ainsi que les bugs détectés. Cela paraît donc logique qu'au vu de ces projets que nous ayons des résultats pareils. Tout ceci infirme notre hypothèse en apportant comme réponse que ce sont plus les labels `bug` et `feature-request` qui sont fréquemment utilisés lors des premiers commits même s'il y a un nombre non négligeable sur des labels qui expriment des besoins plus spécifiques comme `integrated-terminal` ou encore `javascript`. Même si les projets Kubernetes et Tensorflow faisaient parti de l'analyse nous pensons que le résultats serait le même puisqu'eux aussi sont comme vscode ou flutter des projets qui grandissent au fil du temps. Et que nous n'analysons pas les débuts mais une intégration à un projet déjà en cours de développement.
-
-Ce qui nous fait interroger sur ***A quoi peut donc servir les labels `good first issue` ou `good first contribution`?***
+Notre intuition à la fin de l'analyse des deux projets précédents s'est avérée exact. 
+Ici nous voyons bien que les labels `verified`, `bug` et `feature-request` sont largement devant tous les autres mais aussi que `good first issue` et `good first contribution` sont totalement absents.
+Nous pourrions en réalité exclure le label `verified` car pour toute intégration d'un bout de code dans la branche principale, il faut que la procédure soit approuvée donc ce label n'est pas très pertinent à prendre en compte dans l'étude. 
+Nous avons d'autres labels qui spécifient des besoins auxquels les différents contributeurs répondent. 
+Quand nous y réfléchissons, nous avons pris des projets assez matures à grandes complexités croissantes dûs à leurs succès et leur utilisation quotidienne.
+Ces projets ont des fonctionnalités qui ne cessent d'augmenter ainsi que les bugs qui sont sans cesse détectés. 
+Cela paraît donc logique qu'au vu de ces projets que nous aboutissions à de pareils résultats. 
+Tout ceci infirme notre hypothèse sur les tickets `good first` en apportant indirectement comme réponse que ce sont plutôt les labels `bug` et `feature-request` qui sont fréquemment utilisés lors des premiers commits malgré le fait qu'il y ait tout de même un nombre non négligeable sur des labels qui expriment des besoins plus spécifiques comme `integrated-terminal` ou encore `javascript`. 
+Même si les projets **Kubernetes** et **Tensorflow** faisaient partie de l'analyse nous pensons que leurs résultats seraient presque les même puisqu'eux aussi sont comme vscode ou flutter c'est-à-dire des projets qui grandissent au fil du temps. 
+Nous n'analysons pas les débuts de ces projets mais les intégrations ou contributions effectuées sur ces projets déjà en cours de développement.
+Et finalement, on en vient à se poser la question suivante : **A quoi servent réellement les labels `good first issue` ou `good first contribution`?**
 
 ## **VI. Prise de recul et conclusion**
 
-Par rapport à nos expériences, nous aurions voulu avoir un échantillon de projets encore plus grand pour aoir encore plus de données à traiter. Mais pour le grand nombre de commits étiquetés analysés nous avons conclu qu'il y avait une tendance pour les nouveaux contributeurs à intégrer un projet par le biais de tickets labelisés `bug`, `feature-requests` de manière générale et plus spécifiquement avec d'autres labels. Nous pourrions aussi biaisé notre analyse par le fait aussi qu'il soit possible que nous ayons inclu des membres de l'équipe de projet c'est - à - dire des nouveaux arrivants soit des membres de l'équipe qui ne l'ont pas spécifier dans le description Github. Nous pouvons ajouter que nous avons pris des projets en forte croissance avec des ajouts de fonctionnalités (ou de refactoring) sont fréquents et à cela s'ajoute un nombre assez conséquents de bugs détectés par les membres de l'équipe ou des utilisateurs du projet qui peuvent donc faire remonter et donc finir en issue avec un label `bug`. Le label `verified` n'est pas pertient dans notre analyse puique c'est tout à fait normal qu'un nouveau code qui doit être intégré soit vérifié et approuvé.
+Par rapport à nos expériences, nous aurions voulu avoir un échantillon de projets encore plus grand pour avoir encore plus de données à traiter. 
+Mais pour le grand nombre de commits étiquetés analysés nous avons conclu qu'il y avait une tendance pour les nouveaux contributeurs à intégrer un projet par le biais de tickets labellisés `bug` ou `feature-requests` de manière générale et plus spécifiquement avec d'autres labels. 
+Notre analyse pourrait s'avérer biaisée par le fait qu'il soit possible que certains contributeurs dont les commits ont été analysés soient en réalité des membres de l'équipe de projet c'est-à-dire des nouveaux arrivants. 
+N'ayant pas eu à disposition une liste des membres de l'équipe sur les différents dépôts Github, il a fallu estimer manuellement. 
+Nous pouvons également ajouter que nous avons pris des projets en forte croissance avec des ajouts de fonctionnalités (ou de refactoring) très fréquentes et à cela s'ajoute un nombre assez conséquent de bugs détectés par les membres de l'équipe projet ou de simples utilisateurs du projet qui peuvent faire remonter l'information en ticket labelisé `bug`. 
+Le label `verified` n'est pas pertinent dans notre analyse puisqu'il est tout à fait normal qu'un nouveau code qui doit être intégré soit vérifié et approuvé (surtout pour si grands projets).
 
-Nous pourrions donc dire qu'en fait les contributeurs pour intégrer le développement d'un projet le font au travers de tickets dont le label est `bug`ou `feature-request` s'ils se sentent en mesure de l'achever ou bien des tickets plus spécifiques qui peuvent montrer la spécialité de ce contributeur comme par exemple le fait qu'il intègre un projet sur un ticket `javascript` ou encore `markdown`.
+Nous pourrions donc dire que les contributeurs intègrent le développement d'un projet au travers de tickets dont les labels sont `bug` ou `feature-request` s'ils se sentent en mesure de l'achever, ou des tickets plus spécifiques qui peuvent montrer la spécialité de ces contributeurs.
+Par exemple un contributeur qui intègre un projet sur un ticket `javascript` ou encore `markdown`.
 
-Mais alors nous nous sommes intérroger sur l'utilité des labels `good first issue` ou `good first contribution`. Sur l'article suivant : ***[An Initial Exploration of the “Good First Issue”
+Mais alors, qu'en est-il de l'utilité des labels `good first issue` ou `good first contribution`? 
+Sur l'article suivant : ***[An Initial Exploration of the “Good First Issue”
 Label for Newcomer Developers
-](https://azaidman.github.io/publications/alderliestenCHASE2021.pdf)*** fourni par notre encadrant, ce dernier explique l'utilité de ces labels.
-L'auteur de l'article parle du fait qu les `good first issue` sont en un sens présent pour aider les nouveaux contributeurs à intégrer le projet car les tickets avec ce label indique qui'il soit familier au projet ou pas il peut achever ce dernier. Jusque là cela correspond à l'idée de ce qu'on se faisait sur ces labels, il ajoutera par la suite son échantillon d'étude qui est beaucoup plus grand que le notre ( environ un facteur 10 nous séprare ). Ce qui rejoint la critique que nous avons émise sur le fait que notre échantillon était encore petit. Puisque sur son échantillon, l'auteur a rencontré près 1.5% de ticket avec le label `good first issue`. Même si le nombre est faible, cela montre bien que ces labels sont bel et bien utilisés. Un peu plus loin il énumérera des types de labels qui sont pris par des développeurs novices ou expérimentés. De ce fait il est dit dans son article que les développeurs pensent que ces labels sont utiles mais que certains contribuent à un projet car ils ont identifé les tickets sur lesquels ils voulaient travailler sans se référer aux labels et que la plupart des novueaux contributeurs préfèrent les tickets `bug`, `documentation` comme première contribution.
+](https://azaidman.github.io/publications/alderliestenCHASE2021.pdf)*** qui nous a été relayé par notre encadrant de projet, on y retrouve une certaine utilité de ces labels.
+L'auteur de l'article parle du fait que les labels `good first issue` sont en un sens, présents pour aider les nouveaux contributeurs à intégrer le projet.
+Les tickets qui portent ce label indiquent que les contributeurs sont soit familiers au projet, soit qu'ils ne peuvent pas achever les fonctionnalités couvertes par le ticket. 
+Jusque-là, cela correspond à l'idée qu'on se faisait sur ces labels. L'auteur ajoute par la suite que son échantillon d'étude est beaucoup plus grand que le nôtre (environ un facteur 10 nous sépare). 
+Ce qui rejoint la critique que nous avons émise sur le fait que notre échantillon était encore petit. 
+Puisque sur son échantillon, l'auteur a rencontré près 1.5 % de tickets avec le label `good first issue`. 
+Même si le nombre est faible, cela montre bien que ces labels sont bel et bien utilisés.
+Un peu plus loin il énumérera des types de labels qui sont pris par des développeurs novices ou expérimentés. 
+De ce fait, il dit dans son article que les développeurs pensent que ces labels sont utiles mais que certains contribuent à un projet car ils ont identifié les tickets sur lesquels ils voulaient travailler sans se référer aux labels et que la plupart des nouveaux contributeurs préfèrent les tickets `bug`, `documentation` comme première contribution.
 
-Pour conclure après la lecture de ce article et notre étude, nous pouvons dire que les contributeurs intègrent un projet soit par des issues qu'ils ont déjà identifié (donc le titre et/ou la description du ticket) sans se fier aux labels soit par les labels `bug`, `documentation`, `enhancement feature` ou encore `feature-request`. L'usage ds labels `good first issue` est encore faible même si elle est très appréciée par les développeurs et avec peut être avec une meilleure mise en avant cette dernière pourrait devenir très utile.
+Pour conclure après la lecture de cet article et sur notre étude, nous pouvons dire que les contributeurs intègrent un projet soit par des tickets qu'ils ont déjà identifiés (donc le titre et/ou la description du ticket) sans se fier aux labels soit par les labels `bug`, `documentation`, `enhancement feature` ou encore `feature-request`. 
+L'usage des labels `good first issue` est encore faible même si elle est très appréciée par les développeurs et peut être qu'avec une meilleure mise en avant, cette dernière pourrait devenir très utile.
 
 ## **VII. Outils**
 
