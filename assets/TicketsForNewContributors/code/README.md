@@ -56,6 +56,6 @@ On y retrouve les attributs suivants :
 
 Ces attributs sont ensuite utilisés pour générer des graphes explicatifs des résultats obtenus.\
 Ces graphes sont contenus dans le répertoire [results](../charts) sous format image.\
-Le code permettant la génération des graphes se trouve [ici](bartChart.py).\
+Pour générer ces graphes, nous utilisons les scripts suivants : [bartChart.py](bartChart.py) et [pieChart.py](pieChart.py).\
 Il est configurable manuellement en passant en entrée le bon fichier json.
 
