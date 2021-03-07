@@ -31,7 +31,7 @@ De grandes firmes telles que Mozilla, Google ou encore MongoDB possèdent leurs 
 Ayant donc à disposition un catalogue de projets que nous pouvions étudier, le choix du sujet était devenu définitif.
 
 
-![Figure 1: Logo UCA, exemple, vous pouvez l'enlever](../assets/model/UCAlogoQlarge.png){:height="25px" }
+![Figure 1: Logo UCA, exemple, vous pouvez l'enlever](../assets/model/UCAlogoQlarge.png)
 
 
 ## II. Observations - Question générale
