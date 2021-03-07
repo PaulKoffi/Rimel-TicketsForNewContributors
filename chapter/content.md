@@ -89,7 +89,7 @@ Nous avons ainsi choisi les projets open source suivants :
 * [Tensorflow](https://github.com/tensorflow/tensorflow)
 * [Ansible](https://github.com/ansible/ansible)
 * [OhmyZsh](https://github.com/ohmyzsh/ohmyzsh)
-* [Linux]()
+* [Linux](https://github.com/torvalds/linux)
 
 Pourquoi ceux-là et pas d'autres ? Tout d'abord parce qu'ils sont open source ce qui nous permet un libre accès pour nos analyses.\
 Ensuite parce que ce sont de gros projets qui regorgent de beaucoup de contributeurs, de quoi faire une analyse exhaustive.
@@ -149,25 +149,6 @@ Notre script analysait alors les informations récupérées dans les en-têtes d
 Une fois trouvée nous nous sommes replongés dans l'avancée de notre expérience. Cette fois-ci, nous parcourions tous les commits des 3 dernières pages et pour chacun d'entre eux nous effectuons une analyse sur le message du commit ( qui se trouve dans à cet endroit dans le corps de la réponse d'un commit). L'analyse sur le message du commit était de savoir si ce dernier comprenait un hashtag car c'était la condition pour reconnaître un commit étiquetté.
 </div>
 
-```diff
-+ 
-
-Nous allons analyser les données et confimer ou infirmer notre hypothèse
-```
-
-```diff
-- Pour effectuer cette vérification, nous avons procédé manuellement dans un premier temps.
-- La méthode manuelle consistait à choisir un projet open source, prendre un ensemble de dix(10) contributeurs au hasard puis dérouler notre algorithme de vérification.\
-- Mais nous avons très vite été limités par le nombre de projets que nous pouvions analyser, le procédé fastidieux de la tâche et le temps énorme qu'il faut y consacrer.
-```
-Nous avons ensuite mis en place un procédé automatique à partir d'un script python pour nous aider à analyser plus de projets.\
-Le script prend en entrée les différents projets à analyser et le label recherché
-
-```
-PM
-Pour répondre à la question suivante: quels sont les labels des premiers commits étiquettés ?
-
-```
 <div style="text-align: justify">
 
 > * Sous-question 2 : Quelles sont les caractéristiques communes à ces tickets (types de labels, format du titre, description) ?
