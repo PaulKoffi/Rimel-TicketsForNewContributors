@@ -188,13 +188,13 @@ En effectuant une recherche manuelle dans ces projets, on a remarqué qu'ils uti
 Nous avons déduit cette information à partir des messages de commits. On s'en aperçoit en regardant les images suivantes :
 
 <p align="center">
-    <img src="../assets/TicketsForNewContributors/charts/tensorflowCommit.png"/>
+    <img src="../assets/TicketsForNewContributors/charts/tensorflowCommit.PNG"/>
 </p>
 
 * Ceci est un commit de tensorflow
 
 <p align="center">
-    <img src="../assets/TicketsForNewContributors/charts/reactCommit.png"/>
+    <img src="../assets/TicketsForNewContributors/charts/reactCommit.PNG"/>
 </p>
 
 * Ceci est un commit de React Native
