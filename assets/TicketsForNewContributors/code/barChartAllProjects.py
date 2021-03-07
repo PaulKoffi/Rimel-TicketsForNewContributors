@@ -11,7 +11,6 @@ if os.path.isfile("results/all-projects.json"):
             oldResult = json.loads(outfile.read())
 
 for element in oldResult:
-    # print(element['labels'])
     for label in element['labels']:
         if label not in allLabels:
             allLabels[label] = element['labels'][label]
@@ -19,7 +18,6 @@ for element in oldResult:
             allLabels[label] += element['labels'][label]
 
 
-# print(allLabels)
 sortedLabels = sorted(allLabels.items(), key = 
              lambda kv:(kv[1], kv[0]))
 reversedOriginal = sortedLabels[::-1]
