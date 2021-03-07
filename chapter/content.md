@@ -83,12 +83,6 @@ Ayant décidé d'analyser les `labels`, `issues` et `commits` liés aux contribu
 
  
 ## IV. Hypothèses et expérimentations
-```
-1. Il s'agit ici d'énoncer sous forme d' hypothèses ce que vous allez chercher à démontrer. Vous devez définir vos hypothèses de façon à pouvoir les _mesurer facilement._ Bien sûr, votre hypothèse devrait être construite de manière à v_ous aider à répondre à votre question initiale_.Explicitez ces différents points.
-2. Test de l’hypothèse par l’expérimentation. 1. Vos tests d’expérimentations permettent de vérifier si vos hypothèses sont vraies ou fausses. 2. Il est possible que vous deviez répéter vos expérimentations pour vous assurer que les premiers résultats ne sont pas seulement un accident.
-3. Explicitez bien les outils utilisés et comment.
-4. Justifiez vos choix
-```
 
 ### 1. Outils utilisés
 
@@ -139,21 +133,10 @@ Pour vérifier notre hypothèse nous sommes partis sur le fait de recenser tous 
 Nous devions recenser tous les labels associés aux différentes issues que nous avons trouvées sur les trois dernières page de commits étiquettés par contributeur qu'on nous avons analysés. Pour cela, comme pour trouver si un commit était étiquetté ou pas nous avions analysé le message de ce dernier. Il suffisait de récupérer le nombre qui se trouve juste après le hashtag. Une fois cela fait, on réeffectuait une requête sur l'api afin de récupérer dans le corps de la réponse de l'issue les labels associés à cette dernière ( qui se trouve à cet endroit). Et pour terminer pour chacun de ces labels nous l'enregistrons dans un fichier json qui avait pour `nom nom_de_l'organisation-nom_du_projet.json` avec le nombre de fois qu'il apparaît. Et si nous faisions un autre contributeur même projet nous mettions à jour les valeurs en cumulant.
 
 Ensuite pour chaque fichier json nous l'avons parcouru pour sommer tous les labels de tous les projets dans un autre fichier json `resultat_final`. A partir de ce fichier nous avons mis dans l'ordre décroissant les labels, donc nous avions du plus utilisé au moins utilisé. Nous avons pris les 5 - 10 premiers labels.
-```diff
-+ Nous cherchons à identifier les tickets dont les contributeurs se servent pour entrer dans un projet. 
-+  Cela suppose qu'ils sont potentiellement catégorisés et qu'ils peuvent être regroupés par catégorie.
-+  Notre intuition à ce stade a été de se servir des ``labels`` pour catégoriser les tickets. 
-+  Ainsi, en recherchant manuellement dans certains projets, nous remarquons la présence de certains labels tels que ``good firt issue`` ou `good first contribution` qui traduisent la première vraie contribution du contributeur.
-+  Nous avons donc décidé de suivre cette intuition pour définir l'hypothèse suivante :\
-+  **Un nouveau contributeur de projet commence par des tickets ayant pour label une chaîne de caractères commençant par good first.**\
-```
+
 </div>
 
 ## V. Analyse des résultats & Conclusion
-
-```
-1. Analyse des résultats & construction d’une conclusion : Une fois votre expérience terminée, vous récupérez vos mesures et vous les analysez pour voir si votre hypothèse tient la route.
-```
 
 Sousquestion1
 
@@ -199,9 +182,6 @@ Nous allons à prsént passer à l'analyse générale qui prend en compte tous l
 
 ## VI. Outils
 
-```
-Précisez votre utilisation des outils ou les développements \(e.g. scripts\) réalisés pour atteindre vos objectifs. Ce chapitre doit viser à \(1\) pouvoir reproduire vos expérimentations, \(2\) partager/expliquer à d'autres l'usage des outils.
-```
 * Postman
 * Github API
 * Python
